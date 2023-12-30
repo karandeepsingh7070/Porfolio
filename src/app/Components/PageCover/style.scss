@@ -1,0 +1,90 @@
+.page-cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .preloader #path-1 {
+    stroke-dasharray: 274px;
+    stroke-dashoffset: 274px;
+    animation: stroke-animation 2s ease forwards;
+    }
+    .preloader #path-2 {
+        stroke-dasharray: 154px;
+        stroke-dashoffset: 154px;
+        animation: stroke-animation 2s ease forwards 0.3s;
+    }
+    .preloader #path-3 {
+        stroke-dasharray: 155px;
+        stroke-dashoffset: 155px;
+        animation: stroke-animation 2s ease forwards 0.6s;
+        
+    }
+    .preloader #path-4 {
+        stroke-dasharray: 138px;
+        stroke-dashoffset: 138px;
+        animation: stroke-animation 2s ease forwards 0.9s;
+    }
+    .preloader #path-5 {
+        stroke-dasharray: 238px;
+        stroke-dashoffset: 238px;
+        animation: stroke-animation 2s ease forwards 1.2s;
+        
+    }
+    .preloader #path-6 {
+        stroke-dasharray: 128px;
+        stroke-dashoffset: 128px;
+        animation: stroke-animation 2s ease forwards 1.5s;
+    }
+    .preloader #path-7 {
+        stroke-dasharray: 128px;
+        stroke-dashoffset: 128px;
+        animation: stroke-animation 2s ease forwards 1.8s;
+        
+    }
+    .preloader #path-8 {
+        stroke-dasharray: 203px;
+        stroke-dashoffset: 203px;
+        animation: stroke-animation 2s ease forwards 2.1s;
+        
+    }
+    .preloader #path-9 {
+        stroke-dasharray: 211px;
+        stroke-dashoffset: 211px;
+        animation: stroke-animation 2s ease forwards 2.4s;
+        
+    }
+    .preloader #path-10 {
+        stroke-dasharray: 238px;
+        stroke-dashoffset: 238px;
+        animation: stroke-animation 2s ease forwards 2.7s;
+        
+    }
+    .preloader #path-11 {
+        stroke-dasharray: 100px;
+        stroke-dashoffset: 100px;
+        animation: stroke-animation 2s ease forwards 3s;
+        
+    }
+    .preloader #path-12 {
+        stroke-dasharray: 138px;
+        stroke-dashoffset: 138px;
+        animation: stroke-animation 2s ease forwards 3.3s;
+        
+    }
+    .preloader #path-13 {
+        stroke-dasharray: 382px;
+        stroke-dashoffset: 382px;
+        animation: stroke-animation 2s ease forwards 3.6s;
+        
+    }
+    .preloader #path-14 {
+        stroke-dasharray: 194px;
+        stroke-dashoffset: 194px;
+        animation: stroke-animation 2s ease forwards 3.9s;
+    }
+}
+
+@keyframes stroke-animation {
+    to {
+        stroke-dashoffset: 0;
+    }
+}

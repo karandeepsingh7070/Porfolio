@@ -1,0 +1,24 @@
+.app-wrapper {
+  /* scroll-snap-points-y: repeat(300px); */
+  /* scroll-snap-type: y mandatory;
+  overflow-y: auto;
+  height: max-content; */
+  letter-spacing: 1px;
+  visibility: hidden;
+  overflow-x: hidden;
+}
+Html {
+  overflow-x: hidden;
+}
+.section {
+    height: 100vh;
+    width: 100vw;
+    padding: 50px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x:hidden ;
+    /* scroll-snap-align: start;
+    border-bottom: 5px solid #000; */
+}

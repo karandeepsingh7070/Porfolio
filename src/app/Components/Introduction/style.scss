@@ -1,0 +1,30 @@
+.intro-wrapper {
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 24px;
+    background-color: #fff;
+}
+.greeting-text {
+    font-family: 'Baloo Da 2', cursive;
+    opacity: 0.75;
+    font-weight: 600;
+}
+.name-text {
+    font-size: 74px;
+    line-height: 120%;
+}
+.cursor {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #469ba3;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    z-index: 100;
+  }

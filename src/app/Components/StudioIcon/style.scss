@@ -1,0 +1,18 @@
+.studio-icon-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 50px;
+    margin-top: 50px;
+    cursor: pointer;
+    display: flex;
+    gap: 1.5rem;
+    .highight-arrow {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        p {
+            margin-bottom: 0.5rem;
+        }
+    }
+}

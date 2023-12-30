@@ -1,0 +1,123 @@
+.skill-wrapper {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    h1 {
+        position: relative;
+        font-size: 400px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);   
+        text-align: center; 
+    }
+    .top-split, .bottom-split {
+        overflow: hidden;
+        position: absolute;
+        height: 50vh;
+        width: 100%;
+        background-color: #fff;
+        z-index: 1;
+    }
+    .top-split {
+        top: 0%;
+    }
+    .top-h {
+        top: 100%;
+    }
+    .bottom-h {
+        top: 0%;
+    }
+    .bottom-split {
+        bottom: 0%;
+    }
+    .center-split {
+        width: 100%;
+        height: 100vh;
+        background-color: #000;
+        position: absolute;
+        top: 0;
+        z-index: 0;
+    }
+}
+.content{
+    position: relative;
+    padding: 50px 0;
+    margin: 100vh auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    height: 100vh;
+    color: #fff;
+    text-align: center;
+    .skill-description {
+        font-size: 16px;
+        opacity: 0.7;
+        width: 800px;
+        margin: 0 auto;
+    }
+    .skill-wrapper {
+        text-align: center;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        // flex-direction: column;
+        gap: 30px;
+        width: 1020px;
+        height: 350px;
+        margin-top: 4rem;
+        .skill-icon {
+            width: 120px;
+            height: 120px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .skill-title {
+            margin-top: 12px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+    }
+    .other-skills {
+        position: absolute;
+        bottom: 100px;
+        left: 0;
+        text-align: left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        .other-skill-title {
+            font-size: 24px;
+        }
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+        .other-skill {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 90px;
+            align-items: center;
+            width: 75px;
+            text-align: center;
+            gap: 10px;
+            font-family: 'Baloo Da 2', cursive;
+            .other-skill-sub-title {
+                font-size: 10px;
+            }
+        }
+    }
+}
+
+.content h4{
+    font-size: 48px;
+}

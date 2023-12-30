@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600&family=Baloo+Paaji+2:wght@800&display=swap');
+
+// $base-color: #c6538c;
+// light-theme
+$light-theme-text-color: #000000;
+$light-theme-bg-color: #ffffff;
+
+// dark-theme
+$dark-theme-text-color: #ffffff;
+$dark-theme-bg-color: #000000;
+
+$highlight-color: #570530;
+$disable-color: #EAEAEA;
+
+$pop-theme-color: #D4ADFC;
+$pop-theme-secondary-color: #E7F6F2;
+
+$theme-box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+
+$title-font-size: 74px;
+$subtitle-font-size: 24px;
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Baloo Da 2', cursive;
+}
+
+.light-theme-text-color {
+    color: $light-theme-text-color;
+}
+
+.light-theme-bg-color {
+    background-color: $light-theme-bg-color;
+}
+
+.dark-theme-text-color {
+    color: $dark-theme-text-color;
+}
+
+.dark-theme-bg-color {
+    background-color: $dark-theme-bg-color;
+}
+
+.theme-box-shadow {
+    box-shadow: $theme-box-shadow;
+}
+
+.title-font-size {
+    font-size: $title-font-size;
+}
+
+.subtitle-font-size {
+    font-size: $subtitle-font-size;
+}
+
+.title-font-family {
+    font-family: 'Baloo Paaji 2', cursive;
+}
+
+.disable-color {
+    color: $disable-color;
+}
+.disable-bg-color {
+    background-color: $disable-color;
+}
+.pop-theme-color {
+    background-color: $pop-theme-color;
+}
+.pop-theme-color-text {
+    color: $pop-theme-color;
+}
+
+.highlight-text-color {
+    color: $highlight-color;
+    font-weight: 600;
+}
+.page-cover {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: -100%;
+    z-index: 8;
+    background-color: $highlight-color;
+}
+.page-cover-ripple-wrapper {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: -200%;
+    z-index: 9;
+    background-color: $pop-theme-color;
+}
