@@ -78,3 +78,52 @@
         }
     }
 }
+
+@media (max-width: 900px) {
+    .exp-section {
+        .exp-wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            .exp-content-wrapper {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                .exp-highlights, .exp-progress {
+                    width: 100%;
+                }
+                .exp-progress {
+                    display: flex;
+                    overflow: scroll;
+                    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+                    scrollbar-width: none;
+                    .exp-circle {
+                        display: none;
+                    }
+                    .exp-comp {
+                        width: 300px;
+                        margin-top: 2rem;
+                        gap: 15px;
+                        flex-direction: column;
+                        .exp-date {
+                            font-size: 12px;
+                        }
+                        .exp-comp-designation{
+                            font-size: 16px;
+                        }
+                        .exp-comp-text {
+                            font-size: 14px;
+                        }
+                        .exp-comp-content {
+                            width: 300px;
+                        }
+                    }
+                }
+                .exp-progress::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+        }
+    }
+    
+}

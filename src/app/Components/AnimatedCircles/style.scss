@@ -15,3 +15,9 @@
     right: -15%;
     top: -25%;
 }
+
+@media (max-width: 900px) {
+    .circle-1 {
+        display: none;
+    }
+}

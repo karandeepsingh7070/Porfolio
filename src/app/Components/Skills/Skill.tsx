@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from "next/image";
 
 import reactIcon from "../../../assets/react.png"
@@ -15,6 +15,11 @@ import nodeIcon from "../../../assets/nodejs.png"
 import uiIcon from "../../../assets/Ui.png"
 
 const Skill = () => {
+
+    const [mediaWidth,setMediaWidth] = useState(window.innerWidth)
+    useEffect(() => {
+        setMediaWidth(window.innerWidth)
+    }, [window.innerWidth])
     let skillsObj = [
         {
             name : "React Js",
@@ -75,7 +80,8 @@ const Skill = () => {
     name: string;
     icon: any;
 }) => {
-    if (skill.name == "gap") return <div></div>
+    if (skill.name == "gap" && mediaWidth > 900) return <div></div>
+    if (skill.name == "gap" && mediaWidth < 900) return 
     return <div className='skill-container'>
         <div className='skill-icon'>
             <Image

@@ -28,3 +28,18 @@
     mix-blend-mode: difference;
     z-index: 100;
   }
+
+  @media (max-width: 900px) {
+    .intro-wrapper { 
+        position: relative;
+        top: 10%;
+        width: unset;
+        .intro-text {
+            font-size: 18px;
+        }
+    }
+    .name-text {
+        font-size: 30px;
+        margin-bottom: 0.3rem;
+    }
+  }

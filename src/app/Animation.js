@@ -134,7 +134,8 @@ const pageCoverAnimation = (element) => {
         1, {
             delay : 2,
             ease : Power3.easeOut,
-            left : '100%'
+            left : '100%',
+            display : 'none'
         }
     )
 }

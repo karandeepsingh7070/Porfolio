@@ -1,0 +1,19 @@
+.disclaimer-wrapper {
+    position: fixed;
+    width: 100%;
+    z-index: 9;
+    right: 0;
+    cursor: pointer;
+    .disclaimer-content {
+        padding: 0.2rem;
+        p {
+            font-size: 8px;
+            opacity: 0.7;
+            font-weight: bold;
+        }
+        ul li p {
+            font-size: 8px;
+            font-weight: 600;
+        }
+    }
+}

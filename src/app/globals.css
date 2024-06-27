@@ -22,3 +22,8 @@ Html {
     /* scroll-snap-align: start;
     border-bottom: 5px solid #000; */
 }
+@media (max-width: 900px) {
+  .section {
+  height: max-content;
+  }
+}

@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: fixed;
     .preloader #path-1 {
     stroke-dasharray: 274px;
     stroke-dashoffset: 274px;
@@ -86,5 +87,10 @@
 @keyframes stroke-animation {
     to {
         stroke-dashoffset: 0;
+    }
+}
+@media (max-width: 900px) {
+    .preloader {
+        width: 200px;
     }
 }

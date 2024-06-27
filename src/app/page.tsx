@@ -9,6 +9,7 @@ import IntroPage from './Components/Introduction/IntroPage';
 import PageCover from './Components/PageCover/index';
 import Projects from './Components/Projects/index';
 import Skills from './Components/Skills/index';
+import DisclaimerHeader from "./Components/DisclaimerHeader/index"
 import "./globals.css"
 export default function Home() {
 
@@ -49,6 +50,7 @@ export default function Home() {
   return (<>
     <div className='cursor'></div>
   <div className='app-wrapper' ref={appRef}>
+    <DisclaimerHeader />
   <PageCover elementRef={studioIconRef}  />
       <div className="section light-theme-text-color light-theme-bg-color">
         <IntroPage />
