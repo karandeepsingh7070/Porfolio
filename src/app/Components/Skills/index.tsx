@@ -50,8 +50,8 @@ const Skills = () => {
                     </div>
                     <div className='other-skills'>
                         <div className='other-skill-title title-font-family'>Other Skills</div>
-                        {skillsObj.map((skill) => {
-                            return <div className='other-skill'>
+                        {skillsObj.map((skill,i) => {
+                            return <div key={i} className='other-skill'>
                                 <div className='skill-icon'>
                                     <Image
                                         src={skill.icon}

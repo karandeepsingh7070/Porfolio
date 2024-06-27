@@ -19,7 +19,7 @@ const Skill = () => {
     const [mediaWidth,setMediaWidth] = useState(window.innerWidth)
     useEffect(() => {
         setMediaWidth(window.innerWidth)
-    }, [window.innerWidth])
+    }, [])
     let skillsObj = [
         {
             name : "React Js",
@@ -79,10 +79,10 @@ const Skill = () => {
   {skillsObj.map((skill: {
     name: string;
     icon: any;
-}) => {
+},i) => {
     if (skill.name == "gap" && mediaWidth > 900) return <div></div>
     if (skill.name == "gap" && mediaWidth < 900) return 
-    return <div className='skill-container'>
+    return <div key={i} className='skill-container'>
         <div className='skill-icon'>
             <Image
                         src={skill.icon}

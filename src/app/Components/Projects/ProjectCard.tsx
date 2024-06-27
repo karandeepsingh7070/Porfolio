@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import Image from "next/image";
 import Monumental from "../../../assets/monumental.png"
 import { scrollProject } from '@/app/Animation';
+import Image from '../../../../node_modules/next/image';
 const ProjectCard = () => {
 
     // useEffect(() => {

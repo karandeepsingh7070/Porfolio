@@ -18,11 +18,11 @@ export default function Home() {
   let studioIconRef = useRef(null)
   const intersection = useIntersection(aboutSectionRef,{
     root : null,
-    roothMargin : "0px",
+    rootMargin : "0px",
     threshold : 0.4,
   })
   const handleCursor = () => {
-    const cursor = document.querySelector(".cursor")
+    const cursor: any = document.querySelector(".cursor")
     if (cursor) {
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.pageX + 'px'
@@ -33,7 +33,7 @@ export default function Home() {
 
   useEffect(() => {
     const lenis = new Lenis()
-    function raf(time) {
+    function raf(time: any) {
       lenis.raf(time)
       requestAnimationFrame(raf)
     }
