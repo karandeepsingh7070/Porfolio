@@ -12,6 +12,7 @@ import Skills from './Components/Skills/index';
 import DisclaimerHeader from "./Components/DisclaimerHeader/index"
 import "./globals.css"
 import withNoSSR from './withNoSSR';
+import ConnectCard from './Components/ConnectCard';
 function Home() {
 
   let appRef = useRef(null)
@@ -60,6 +61,7 @@ function Home() {
       <Skills />
       <div className="section exp-section"><Experience /></div>
       {/* <div className='section proj-section'><Projects /></div> */}
+      <ConnectCard />
       </div>
   </>)
 }

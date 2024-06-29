@@ -1,0 +1,86 @@
+.connect-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 24px;
+    background-color: #000;
+    .connect-card {
+        position: relative;
+        width: 1000px;
+        height: 500px;
+        background-color: #fff;
+        border-radius: 12px;
+        display: flex;
+        .Prfile-img {
+            width: 40%;
+            display: flex;
+            align-items: center;
+            padding: 1rem 3rem;
+        }
+        .connect-info {
+            width: 60%;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            padding: 3rem 1rem;
+            text-align: left;
+            .Prfile-img-mb {
+                display: none;
+            }
+            h3 {
+                font-size: 18px;
+            }
+            p {
+                font-size: 14px;
+            }
+            .connect-circle {
+                .circle-1 {
+                    top: 50%;
+                    left: 50%;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1050px) {
+    .connect-wrapper {
+        .connect-card {
+            width: 700px;
+            height: 400px;
+            .Prfile-img {
+                display: none;
+            }
+            .connect-info {
+                width: 100%;
+                z-index: 9;
+            .Prfile-img-mb {
+                display: flex;
+                svg {
+                    width: 100px;
+                    height: 100px;
+                }
+            }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .connect-wrapper {
+        .connect-card {
+            width: 400px;
+            height: 400px;
+            .connect-circle {
+                .circle {
+                    left: 70%;
+                    bottom: 70%;
+                }
+            }
+        }
+    }
+}
