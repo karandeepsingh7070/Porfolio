@@ -10,6 +10,7 @@ import narutoIcon from "../../../assets/naruto.png"
 import pcbIcon from "../../../assets/pcb.png"
 import teachIcon from "../../../assets/teach.png"
 import Skill from './Skill';
+import withNoSSR from '@/app/withNoSSR';
 
 const Skills = () => {
     gsap.registerPlugin(ScrollTrigger);
@@ -71,4 +72,4 @@ const Skills = () => {
     </>)
 }
 
-export default Skills
+export default withNoSSR(Skills);

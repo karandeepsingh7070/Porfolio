@@ -11,7 +11,8 @@ import Projects from './Components/Projects/index';
 import Skills from './Components/Skills/index';
 import DisclaimerHeader from "./Components/DisclaimerHeader/index"
 import "./globals.css"
-export default function Home() {
+import withNoSSR from './withNoSSR';
+function Home() {
 
   let appRef = useRef(null)
   let aboutSectionRef = useRef(null)
@@ -62,3 +63,4 @@ export default function Home() {
       </div>
   </>)
 }
+export default withNoSSR(Home);

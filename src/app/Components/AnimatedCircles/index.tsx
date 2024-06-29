@@ -1,3 +1,4 @@
+import withNoSSR from '@/app/withNoSSR'
 import React, { useEffect, useRef, useState } from 'react'
 import {circleAnimation, circleAnimation2, expandToggleAnimation, expandToggleAnimation2} from "../../Animation"
 import "./style.scss"
@@ -28,4 +29,4 @@ const Circle = () => {
   </>)
 }
 
-export default Circle
+export default withNoSSR(Circle);
