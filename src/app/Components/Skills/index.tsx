@@ -7,7 +7,7 @@ import Image from "next/image";
 
 import productionIcon from "../../../assets/production.png"
 import narutoIcon from "../../../assets/naruto.png"
-import pcbIcon from "../../../assets/pcb.png"
+import figma from "../../../assets/figma.png"
 import teachIcon from "../../../assets/teach.png"
 import Skill from './Skill';
 import withNoSSR from '@/app/withNoSSR';
@@ -21,8 +21,8 @@ const Skills = () => {
             icon: productionIcon
         },
         {
-            name: "PCB Designing",
-            icon: pcbIcon
+            name: "Figma",
+            icon: figma
         },
         {
             name: "Binge Watching",
@@ -44,8 +44,8 @@ const Skills = () => {
             </div>
             <div className='center-split'>
                 <div className="content">
-                    <h4 className='pop-theme-color-text title-font-family'>What I do</h4>
-                    <div className='skill-description'>Solution driven <span className='title-font-family'>Web Developer</span> with over 2 years of experience writing code. I am adept at contributing to highly collaborative work environment while delivering efficient and effectivw.</div>
+                    <h4 className='pop-theme-color-text title-font-family'>Welcome to my Arsenal!</h4>
+                    <div className='skill-description'>From crafting <span className='title-font-family'>sleek</span> user interfaces to optimizing performance, here are the skills I bring to every project.</div>
                     <div className='skills-wrapper'>
                         <Skill />
                     </div>
@@ -57,6 +57,7 @@ const Skills = () => {
                                     <Image
                                         src={skill.icon}
                                         alt="Logo"
+                                        style={{width: "40px",height:"40px"}}
                                     /></div>
                                     <div className='other-skill-sub-title title-font-family'>{skill.name}</div>
                             </div>

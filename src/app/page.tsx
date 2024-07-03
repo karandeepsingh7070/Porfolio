@@ -60,7 +60,7 @@ function Home() {
       <div className="section" ref={aboutSectionRef}><About /></div>
       <Skills />
       <div className="section exp-section"><Experience /></div>
-      {/* <div className='section proj-section'><Projects /></div> */}
+      <div className='section proj-section'><Projects /></div>
       <ConnectCard />
       </div>
   </>)

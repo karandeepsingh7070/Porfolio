@@ -19,7 +19,8 @@ const About = () => {
         <div className='about-wrapper'>
             <div className='about-content'>
                 <div className='name-text title-font-family abt-name-txt'>Karandeep Singh</div>
-                <div className='about-description'>Some gibrish <span className='highlight-text-color'>Web Developer</span> with over 2 years of experience writing code. I am adept at contributing to highly collaborative work environment while delivering efficient and effective web solutions, and well skilled in analysis. Solution driven Engineer with over 2 years of experience writing code. I am adept at contributing to highly collaborative work.</div>
+                <div className='about-description'>A <span className='highlight-text-color'>Frontend Engineer </span> with over 4 years of experience in building web applications. My journey into the world of software started with a simple curiosity about how websites work, and it quickly turned into a passion that’s been driving my career ever since.
+                <br></br>Take a look around my portfolio to see some of the exciting projects I've worked on.</div>
                 <div className='resume-btn subtitle-font-size disable-bg-color'>
                     <Image
                         src={Download}

@@ -13,6 +13,8 @@ import reduxIcon from "../../../assets/redux.png"
 import sagaIcon from "../../../assets/Frame.png"
 import nodeIcon from "../../../assets/nodejs.png"
 import uiIcon from "../../../assets/Ui.png"
+import amazonAws from "../../../assets/amazon-aws.png"
+
 
 const Skill = () => {
 
@@ -49,10 +51,10 @@ const Skill = () => {
             name : "Sass",
             icon: sassIcon
         },
-        {
-            name : "gap",
-            icon: sassIcon
-        },
+        // {
+        //     name : "gap",
+        //     icon: sassIcon
+        // },
         {
             name : "HTML",
             icon: htmlIcon
@@ -60,6 +62,10 @@ const Skill = () => {
         {
             name : "Redux",
             icon: reduxIcon
+        },
+        {
+            name : "AWS",
+            icon: amazonAws
         },
         {
             name : "Redux-Saga",

@@ -68,6 +68,9 @@ $subtitle-font-size: 24px;
 .pop-theme-color {
     background-color: $pop-theme-color;
 }
+.pop-theme-active-border {
+    border-bottom: 3px solid $pop-theme-color !important;
+}
 .pop-theme-color-text {
     color: $pop-theme-color;
 }

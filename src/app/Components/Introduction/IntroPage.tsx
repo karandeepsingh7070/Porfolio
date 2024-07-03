@@ -15,7 +15,7 @@ const IntroPage = () => {
     <div className='inro-wrapper'>
       <div className='greeting-text' ref={greetRef} >{`Hello, I'm`}</div>
       <div className='name-text title-font-family'>Karandeep Singh</div>
-      <div className='intro-text'>Some gibrish <span className='highlight-text-color'>Web Developer</span> with over 2 years of experience writing code. I am adept at contributing to highly collaborative work environment.  I am adept at contributing to highly </div>
+      <div className='intro-text'><span className='highlight-text-color'>Frontend Engineer</span> based in New Delhi, India, over 4 years of experience writing code. Building complex application with diverse set of skills. </div>
     </div>
   </div>
   </>)
