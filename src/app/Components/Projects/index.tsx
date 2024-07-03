@@ -30,13 +30,13 @@ const Projects = () => {
       <div className='sub-heading-title title-font-family'>{`I've worked on`}</div>
       <div className='proj-content-wrapper'>
         <div className='tabs-container'>
-      {tabs.map((tab) => {
-            return <div onClick={() => handleActiveTab(tab.position)} className={selectedTab == tab.position ? 'tabs-list pop-theme-active-border' : 'tabs-list'}>{tab.type}</div>
+      {tabs.map((tab, i) => {
+            return <div key={i} onClick={() => handleActiveTab(tab.position)} className={selectedTab == tab.position ? 'tabs-list pop-theme-active-border' : 'tabs-list'}>{tab.type}</div>
           })}
           </div>
         <div className='proj-card-wrapper'>
           {projectLists[selectedTab]?.projects?.length ? projectLists[selectedTab].projects?.map((project: any, i: number) => {
-            return <ProjectCard item={project} />
+            return <ProjectCard key={i} item={project} />
           }) : <h3 style={{margin: '20px'}}>Yet to update!</h3>}
         </div>
       </div>

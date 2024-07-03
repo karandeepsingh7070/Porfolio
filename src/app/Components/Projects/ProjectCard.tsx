@@ -28,8 +28,8 @@ const ProjectCard = ({item}:Project) => {
                 <div className='proj-title'>{item?.name}</div>
                 <div className='proj-comp-name'>{item?.organisation}</div>
                 <div className='proj-skills'>
-                    {item?.tech?.map((skill:string) => {
-                    return <div className='skill'>{skill}</div>
+                    {item?.tech?.map((skill:string,i) => {
+                    return <div key={i} className='skill'>{skill}</div>
                     })}
                 </div>
                 {item?.code ? <div className='proj-code'>

@@ -11,7 +11,7 @@ const ConnectCard = () => {
         <div className='connect-info'>
             <div className='connect-info'>
             <div className='Prfile-img-mb'>{connectSvg()}</div>
-                <h3>I'm always up for a chat.</h3>
+                <h3>I`m always up for a chat.</h3>
                 <p><span><a href='mailto:Karandeepsinghworkspace@gmail.com'><b>Pop me an email</b></a></span> at @Karandeepsinghworkspace@gmail.com or give me a shout on social media.</p>
             </div>
             <div className='connect-circle'><Circle /></div>

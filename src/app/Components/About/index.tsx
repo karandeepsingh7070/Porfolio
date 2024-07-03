@@ -20,7 +20,7 @@ const About = () => {
             <div className='about-content'>
                 <div className='name-text title-font-family abt-name-txt'>Karandeep Singh</div>
                 <div className='about-description'>A <span className='highlight-text-color'>Frontend Engineer </span> with over 4 years of experience in building web applications. My journey into the world of software started with a simple curiosity about how websites work, and it quickly turned into a passion that’s been driving my career ever since.
-                <br></br>Take a look around my portfolio to see some of the exciting projects I've worked on.</div>
+                <br></br>Take a look around my portfolio to see some of the exciting projects I`ve worked on.</div>
                 <div className='resume-btn subtitle-font-size disable-bg-color'>
                     <Image
                         src={Download}
