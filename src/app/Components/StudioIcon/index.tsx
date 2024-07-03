@@ -23,7 +23,7 @@ const StudioIcon:React.FC<ILogo> = ({src,arrow}) => {
 
   return (<>
   <PageCover elementRef={studioIconRef}  />
-  <div className='studio-icon-wrapper' onClick={handleAnimation}>
+  {/* <div className='studio-icon-wrapper' onClick={handleAnimation}>
     <Image 
     src={src}
     alt="Logo"
@@ -35,7 +35,7 @@ const StudioIcon:React.FC<ILogo> = ({src,arrow}) => {
     />
     <p>やだ！(ya da!)</p>
     </div>
-  </div>
+  </div> */}
   </>)
 }
 
