@@ -28,6 +28,10 @@
             height: 100%;
             padding: 3rem 1rem;
             text-align: left;
+            svg {
+                height: 30px;
+                width: 30px;
+            }
             .Prfile-img-mb {
                 display: none;
             }
@@ -88,7 +92,7 @@
     .connect-wrapper {
         .connect-card {
             width: 350px;
-            height: 350px;
+            height: 400px;
         }
     }
 }
