@@ -10,25 +10,29 @@ export const projectLists = [
             name : 'Monumental Sports Network',
             organisation :'Viewlift',
             thumbnail: Monumental,
-            tech : ['React Js','Js/Ts','SSR','Css/Sass','Viddeo Js','SSE']
-        },
-        {
-            name : 'My Outdoor Tv',
-            organisation :'Viewlift',
-            thumbnail: myOutdoor,
-            tech : ['React Js','Js','Css/Sass','Viddeo Js','Websocket']
+            tech : ['React Js','Javascript','Typescript','Server Side Rendering (SSR)','Css/Sass','Video Js','SSE','Publish-Subscribe architecture',],
+            visitUrl : "https://www.monumentalsportsnetwork.com/"
         },
         {
             name : 'LivGolf+',
             organisation :'Viewlift',
             thumbnail: livgolf,
-            tech : ['React Js','Js','Css/Sass','Viddeo Js','Websocket']
+            tech : ['React Js','Javascript','Typescript','Css/Sass','Video Js','Stripe','GraphQL APIs'],
+            visitUrl :"https://livgolfplus.com/"
         },
         {
             name : 'Hoichoi',
             organisation :'Viewlift',
             thumbnail: hoichoi,
-            tech : ['React Js','Js','Css/Sass','Viddeo Js','Websocket']
+            tech : ['React Js','Js','Css/Sass','Video Js','Websocket'],
+            visitUrl : null
+        },
+        {
+            name : 'My Outdoor Tv',
+            organisation :'Viewlift',
+            thumbnail: myOutdoor,
+            tech : ['React Js','Js','Css/Sass','Video Js','Websocket'],
+            visitUrl : "https://app.myoutdoortv.com/"
         },
     ]
     },

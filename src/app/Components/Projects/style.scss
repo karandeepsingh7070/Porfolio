@@ -51,6 +51,7 @@
         border-radius: 12px;
         margin: 1rem 1rem 60px;
         padding: 9px;
+        position: relative;
         .proj-img img {
             border-radius: 6px 6px 0 0;
             width: 100%;
@@ -67,6 +68,8 @@
         .proj-skills {
             display: flex;
             gap: 0.2rem;
+            flex-flow: wrap;
+            position: absolute;
             .skill {
                 font-size: 8px;
                 width: max-content;
@@ -76,10 +79,21 @@
             }
         }
         .know-more {
+            position: absolute;
             margin-top: 0.3rem;
             font-weight: bold;
             font-size: 12px;
             cursor: pointer;
+            left: 0;
+            bottom: 0;
+            padding: 0.1rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid #570530;
+            margin: 0.5rem;
+            a {
+                text-decoration: none;
+                color: #000;
+            }
         }
     }
 }
