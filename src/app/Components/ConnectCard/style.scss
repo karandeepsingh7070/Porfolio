@@ -84,3 +84,11 @@
         }
     }
 }
+@media (max-width: 450px) {
+    .connect-wrapper {
+        .connect-card {
+            width: 350px;
+            height: 350px;
+        }
+    }
+}
