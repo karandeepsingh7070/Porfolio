@@ -41,7 +41,7 @@ export const projectLists = [
         type : 'Packages',
         projects : [{
             name : 'Pub-Sub - Efficient Data Sharing',
-            organisation :'Viewlift',
+            organisation :'Tier 0 client',
             thumbnail: npm,
             tech : ['Publish Subscripbe Architecture','Js'],
             code :'https://github.com/karandeepsingh7070/Pubsub-architecture',
@@ -49,7 +49,7 @@ export const projectLists = [
         },
         {
             name : 'Monetisation - Stripe',
-            organisation :'Viewlift',
+            organisation :'Tier 0 client',
             thumbnail: npm,
             tech : ['Stripe','Ts','Js','React','Avalara'],
             code :'-',
@@ -57,7 +57,7 @@ export const projectLists = [
         },
         {
             name : 'CkEditor - custom Plugins',
-            organisation :'Viewlift',
+            organisation :'Personal',
             thumbnail: npm,
             tech : ['CkEditor5','Webpack','Websocket','Js'],
             code :'-',
