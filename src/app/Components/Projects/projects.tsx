@@ -6,20 +6,21 @@ import npm from "../../../assets/npm.png"
 export const projectLists = [
     {
         type : 'OTT',
-        projects : [{
-            name : 'Monumental Sports Network',
-            organisation :'Viewlift',
-            thumbnail: Monumental,
-            tech : ['React Js','Javascript','Typescript','Server Side Rendering (SSR)','Css/Sass','Video Js','SSE','Publish-Subscribe architecture',],
-            visitUrl : "https://www.monumentalsportsnetwork.com/"
-        },
-        {
-            name : 'LivGolf+',
-            organisation :'Viewlift',
-            thumbnail: livgolf,
-            tech : ['React Js','Javascript','Typescript','Css/Sass','Video Js','Stripe','GraphQL APIs'],
-            visitUrl :"https://livgolfplus.com/"
-        },
+        projects : [
+        //     {
+        //     name : 'Monumental Sports Network',
+        //     organisation :'Viewlift',
+        //     thumbnail: Monumental,
+        //     tech : ['React Js','Javascript','Typescript','Server Side Rendering (SSR)','Css/Sass','Video Js','SSE','Publish-Subscribe architecture',],
+        //     visitUrl : "https://www.monumentalsportsnetwork.com/"
+        // },
+        // {
+        //     name : 'LivGolf+',
+        //     organisation :'Viewlift',
+        //     thumbnail: livgolf,
+        //     tech : ['React Js','Javascript','Typescript','Css/Sass','Video Js','Stripe','GraphQL APIs'],
+        //     visitUrl :"https://livgolfplus.com/"
+        // },
         {
             name : 'Hoichoi',
             organisation :'Viewlift',
