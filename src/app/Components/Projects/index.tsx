@@ -1,47 +1,74 @@
-import React, { useEffect, useState } from 'react'
-import ProjectCard from './ProjectCard'
-import { projectLists } from './projects'
-import "./style.scss"
+'use client';
+
+import React, { useEffect, useState, useRef } from 'react';
+import ProjectCard from './ProjectCard';
+import { featuredLists, projectLists } from './projects';
+import "./style.scss";
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import FeaturedProjectCard from './FeaturedProjectCard';
 
 const Projects = () => {
-  let tabs = [{
-    type: 'OTT',
-    position: 0
-  }, {
-    type: 'Packages',
-    position: 1
-  }, {
-    type: 'Others',
-    position: 2
-  }]
-  const [selectedTab, setTab] = useState<number>(0)
+    const tabs = [
+        { type: 'OTT', position: 0 },
+        { type: 'NPM Packages', position: 1 },
+        { type: 'Tools', position: 2 },
+        {type: 'Featured', position: 3}
+    ];
+    const [selectedTab, setTab] = useState<number>(3);
+    const sectionRef = useRef(null);
 
-  useEffect(() => {
-    setTab(tabs[1].position)
-  }, [])
+    gsap.registerPlugin(ScrollTrigger);
 
-  const handleActiveTab = (selectedTab: number) => {
-    setTab(selectedTab)
-  }
+    useEffect(() => {
+        gsap.fromTo(sectionRef.current.querySelectorAll('.project-card'),
+            { y: 30, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: "top 85%",
+                }
+            }
+        );
+    }, [selectedTab]);
 
-  return (<>
-    <div className='proj-wrapper'>
-      <div className='name-text title-font-family'>Projects</div>
-      <div className='sub-heading-title title-font-family'>{`I've worked on`}</div>
-      <div className='proj-content-wrapper'>
-        <div className='tabs-container'>
-      {tabs.map((tab, i) => {
-            return <div key={i} onClick={() => handleActiveTab(tab.position)} className={selectedTab == tab.position ? 'tabs-list pop-theme-active-border' : 'tabs-list'}>{tab.type}</div>
-          })}
-          </div>
-        <div className='proj-card-wrapper'>
-          {projectLists[selectedTab]?.projects?.length ? projectLists[selectedTab].projects?.map((project: any, i: number) => {
-            return <ProjectCard key={i} item={project} />
-          }) : <h3 style={{margin: '20px'}}>Yet to update!</h3>}
-        </div>
-      </div>
-    </div>
-  </>)
-}
+    const handleActiveTab = (selectedTab: number) => {
+        setTab(selectedTab);
+    };
 
-export default Projects
+    return (
+        <section className='projects-section' ref={sectionRef}>
+            <h2 className='projects-title title-font-family'>Projects</h2>
+            <p className='projects-subtitle title-font-family'>I've worked on</p>
+            <div className='tabs-container'>
+                {tabs.map((tab, i) => (
+                    <button
+                        key={i}
+                        onClick={() => handleActiveTab(tab.position)}
+                        className={`tab-button ${selectedTab === tab.position ? 'active' : ''}`}
+                    >
+                        {tab.type}
+                    </button>
+                ))}
+            </div>
+
+            <div className='proj-card-wrapper'>
+                {projectLists[selectedTab]?.projects?.length
+                    ? projectLists[selectedTab].projects.map((project, i) => (
+                        <ProjectCard key={i} item={project} />
+                    ))
+                    : selectedTab == 3 ? featuredLists?.projects?.map((project,i) => {
+                        return <FeaturedProjectCard key={i} item={project} />
+                    }) :
+                    <h3 className='empty-text'>Yet to update!</h3>
+                }
+            </div>
+        </section>
+    );
+};
+
+export default Projects;

@@ -1,104 +1,57 @@
-import React, { useEffect, useState } from 'react'
+'use client';
+
+import React from 'react';
 import Image from "next/image";
 
-import reactIcon from "../../../assets/react.png"
-import nextIcon from "../../../assets/next.png"
-import jsIcon from "../../../assets/js.png"
-import tsIcon from "../../../assets/typescript.png"
-import webpackIcon from "../../../assets/webpack.png"
-import cssIcon from "../../../assets/css.png"
-import sassIcon from "../../../assets/sass.png"
-import htmlIcon from "../../../assets/html.png"
-import reduxIcon from "../../../assets/redux.png"
-import sagaIcon from "../../../assets/Frame.png"
-import nodeIcon from "../../../assets/nodejs.png"
-import uiIcon from "../../../assets/Ui.png"
-import amazonAws from "../../../assets/amazon-aws.png"
+import reactIcon from "../../../assets/react.png";
+import nextIcon from "../../../assets/next.png";
+import jsIcon from "../../../assets/js.png";
+import tsIcon from "../../../assets/typescript.png";
+import webpackIcon from "../../../assets/webpack.png";
+import cssIcon from "../../../assets/css.png";
+import sassIcon from "../../../assets/sass.png";
+import htmlIcon from "../../../assets/html.png";
+import reduxIcon from "../../../assets/redux.png";
+import sagaIcon from "../../../assets/Frame.png";
+import nodeIcon from "../../../assets/nodejs.png";
+import uiIcon from "../../../assets/Ui.png";
+import amazonAws from "../../../assets/amazon-aws.png";
 
+const skillsObj = [
+    { name: "React JS", icon: reactIcon },
+    { name: "Next JS", icon: nextIcon },
+    { name: "JavaScript", icon: jsIcon },
+    { name: "TypeScript", icon: tsIcon },
+    { name: "Webpack", icon: webpackIcon },
+    { name: "CSS", icon: cssIcon },
+    { name: "Sass", icon: sassIcon },
+    { name: "HTML", icon: htmlIcon },
+    { name: "Redux", icon: reduxIcon },
+    { name: "AWS", icon: amazonAws },
+    { name: "Saga", icon: sagaIcon },
+    { name: "Node JS", icon: nodeIcon },
+    { name: "UI", icon: uiIcon },
+];
 
 const Skill = () => {
+    return (
+        <>
+            {skillsObj.map((skill, i) => (
+                <div key={i} className="skill-card">
+                    <div className="icon-ring">
+                        <Image
+                            src={skill.icon}
+                            alt={skill.name}
+                            width={40}
+                            height={40}
+                            style={{ objectFit: "contain" }}
+                        />
+                    </div>
+                    <p className="skill-name">{skill.name}</p>
+                </div>
+            ))}
+        </>
+    );
+};
 
-    const [mediaWidth,setMediaWidth] = useState(window.innerWidth)
-    useEffect(() => {
-        setMediaWidth(window.innerWidth)
-    }, [])
-    let skillsObj = [
-        {
-            name : "React Js",
-            icon: reactIcon
-        },
-        {
-            name : "Next Js",
-            icon: nextIcon
-        },
-        {
-            name : "Javascript",
-            icon: jsIcon
-        },
-        {
-            name : "Typescript",
-            icon: tsIcon
-        },
-        {
-            name : "Webpack",
-            icon: webpackIcon
-        },
-        {
-            name : "Css",
-            icon: cssIcon
-        },
-        {
-            name : "Sass",
-            icon: sassIcon
-        },
-        // {
-        //     name : "gap",
-        //     icon: sassIcon
-        // },
-        {
-            name : "HTML",
-            icon: htmlIcon
-        },
-        {
-            name : "Redux",
-            icon: reduxIcon
-        },
-        {
-            name : "AWS",
-            icon: amazonAws
-        },
-        {
-            name : "Redux-Saga",
-            icon: sagaIcon
-        },
-        {
-            name : "Node JS",
-            icon: nodeIcon
-        },
-        {
-            name : "UI Designing",
-            icon: uiIcon
-        },
-    ]
-  return (<>
-  <div className='skill-wrapper title-font-family'>
-  {skillsObj.map((skill: {
-    name: string;
-    icon: any;
-},i) => {
-    if (skill.name == "gap" && mediaWidth > 900) return <div></div>
-    if (skill.name == "gap" && mediaWidth < 900) return 
-    return <div key={i} className='skill-container'>
-        <div className='skill-icon'>
-            <Image
-                        src={skill.icon}
-                        alt="Logo"
-                    /></div>
-        <div className='skill-title title-font-family'>{skill.name}</div>
-    </div>
-  })}
-  </div>
-  </>)
-}
-
-export default Skill
+export default Skill;

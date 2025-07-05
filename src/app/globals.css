@@ -27,3 +27,14 @@ Html {
   height: max-content;
   }
 }
+
+.scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    background: #D4ADFC;
+    transform-origin: 0%;
+    z-index: 999;
+}

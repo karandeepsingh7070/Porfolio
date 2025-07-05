@@ -1,4 +1,6 @@
 
+import PageTransition from './Components/ScrollProgressBar/PageTransition'
+import ScrollProgressBar from './Components/ScrollProgressBar/ScrollProgressBar'
 import './theme.scss'
 import type { Metadata } from 'next'
 
@@ -20,7 +22,7 @@ export const metadata: Metadata = {
       },
     ],
     type: 'website',
-}
+  }
 }
 
 export default function RootLayout({
@@ -30,7 +32,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ScrollProgressBar />
+        <PageTransition>
+          {children}
+        </PageTransition>
+      </body>
     </html>
   )
 }

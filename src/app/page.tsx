@@ -3,13 +3,13 @@ import Lenis from '@studio-freight/lenis'
 import { useEffect, useRef } from 'react'
 import {useIntersection} from 'react-use';
 import { appVisibility, handleAboutSectionAnimation, preLoaderAnimation } from './Animation';
-import About from './Components/About/index';
-import Experience from './Components/Experience/index';
+// import About from './Components/About/index';
+// import Experience from './Components/Experience/index';
 import IntroPage from './Components/Introduction/IntroPage';
-import PageCover from './Components/PageCover/index';
+// import PageCover from './Components/PageCover/index';
 import Projects from './Components/Projects/index';
 import Skills from './Components/Skills/index';
-import DisclaimerHeader from "./Components/DisclaimerHeader/index"
+// import DisclaimerHeader from "./Components/DisclaimerHeader/index"
 import "./globals.css"
 import withNoSSR from './withNoSSR';
 import ConnectCard from './Components/ConnectCard';
@@ -46,21 +46,24 @@ function Home() {
     preLoaderAnimation(studioIconRef.current)
     handleCursor()
   },[])
+  
 
   intersection && intersection.intersectionRatio  < 0.4 ? 
   handleAboutSectionAnimation(false) : handleAboutSectionAnimation(true)
   return (<>
     <div className='cursor'></div>
   <div className='app-wrapper' ref={appRef}>
-    <DisclaimerHeader />
-  <PageCover elementRef={studioIconRef}  />
+    {/* <DisclaimerHeader /> */}
+  {/* <PageCover elementRef={studioIconRef}  /> */}
       <div className="section light-theme-text-color light-theme-bg-color">
         <IntroPage />
       </div>
-      <div className="section" ref={aboutSectionRef}><About /></div>
+      {/* <div className="section" ref={aboutSectionRef}><About /></div> */}
       <Skills />
-      <div className="section exp-section"><Experience /></div>
-      <div className='section proj-section'><Projects /></div>
+      {/* <div className="section exp-section"><Experience /></div> */}
+      {/* <div className='section proj-section'> */}
+        <Projects />
+        {/* </div>  */}
       <ConnectCard />
       </div>
   </>)

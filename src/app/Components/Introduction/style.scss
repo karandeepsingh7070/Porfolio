@@ -1,45 +1,175 @@
-.intro-wrapper {
-    width: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.intro-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 1rem;
+  background-color: #ffffff;
+
+  .intro-content {
+    max-width: 600px;
     text-align: center;
-    font-size: 24px;
-    background-color: #fff;
-}
-.greeting-text {
-    font-family: 'Baloo Da 2', cursive;
-    opacity: 0.75;
-    font-weight: 600;
-}
-.name-text {
-    font-size: 74px;
-    line-height: 120%;
-}
-.cursor {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    color: #fff;
-    background-color: #469ba3;
-    pointer-events: none;
-    mix-blend-mode: difference;
-    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
   }
 
-  @media (max-width: 900px) {
-    .intro-wrapper { 
-        position: relative;
-        top: 10%;
-        width: unset;
-        .intro-text {
-            font-size: 18px;
-        }
+  .avatar-glow-wrapper {
+    position: relative;
+    width: 180px;
+    height: 180px;
+
+    .glow-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 250px;
+      height: 250px;
+      background: rgba(212, 173, 252, 0.35); // #D4ADFC glow
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      filter: blur(80px);
+      z-index: 0;
     }
-    .name-text {
-        font-size: 30px;
-        margin-bottom: 0.3rem;
+
+    .avatar-inner {
+      position: relative;
+      z-index: 1;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     }
   }
+
+  .intro-greeting {
+    font-size: 1.25rem;
+    color: #666;
+    font-weight: 500;
+  }
+
+  .intro-name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #111;
+  }
+
+  .intro-role {
+    font-size: 1.125rem;
+    color: #444;
+    line-height: 1.6;
+
+    .highlight {
+      font-size: 1.5rem;
+      color: #D4ADFC;
+      font-weight: 600;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .intro-container {
+    padding: 3rem 1rem;
+
+    .intro-content {
+      max-width: 90%;
+    }
+
+    .intro-name {
+      font-size: 2rem;
+    }
+
+    .intro-role {
+      font-size: 1rem;
+    }
+
+    .avatar-glow-wrapper {
+      width: 140px;
+      height: 140px;
+
+      .glow-bg {
+        width: 200px;
+        height: 200px;
+      }
+
+      .avatar-inner {
+        width: 140px;
+        height: 140px;
+      }
+    }
+  }
+}
+
+.glow-bg {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  // background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  z-index: 50;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+  .header-content {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #868484;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+.resume-cta {
+  background-color: #D4ADFC;
+  color: #111;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 9999px; // pill shape
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  &:hover {
+    background-color: #c49cfa;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 173, 252, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(212, 173, 252, 0.3);
+  }
+}
+
+@media (max-width: 768px) {
+  .resume-cta {
+    width: auto;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+  }
+}
