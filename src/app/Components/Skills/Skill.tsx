@@ -1,55 +1,48 @@
 'use client';
 
 import React from 'react';
-import Image from "next/image";
+import { FaReact, FaAws, FaNodeJs } from "react-icons/fa";
+import { SiNextdotjs, SiRollupdotjs } from "react-icons/si";
+import { RiJavascriptFill } from "react-icons/ri";
+import { BiLogoTypescript } from "react-icons/bi";
+import { SiCss3, SiSass, SiRedux, SiSocketdotio, SiWebpack } from "react-icons/si";
+import { FaGolang } from "react-icons/fa6";
+import { SiShadcnui } from "react-icons/si";
+import { MdAnimation } from "react-icons/md";
+import { GrGraphQl } from "react-icons/gr";
 
-import reactIcon from "../../../assets/react.png";
-import nextIcon from "../../../assets/next.png";
-import jsIcon from "../../../assets/js.png";
-import tsIcon from "../../../assets/typescript.png";
-import webpackIcon from "../../../assets/webpack.png";
-import cssIcon from "../../../assets/css.png";
-import sassIcon from "../../../assets/sass.png";
-import htmlIcon from "../../../assets/html.png";
-import reduxIcon from "../../../assets/redux.png";
-import sagaIcon from "../../../assets/Frame.png";
-import nodeIcon from "../../../assets/nodejs.png";
-import uiIcon from "../../../assets/Ui.png";
-import amazonAws from "../../../assets/amazon-aws.png";
 
 const skillsObj = [
-    { name: "React JS", icon: reactIcon },
-    { name: "Next JS", icon: nextIcon },
-    { name: "JavaScript", icon: jsIcon },
-    { name: "TypeScript", icon: tsIcon },
-    { name: "Webpack", icon: webpackIcon },
-    { name: "CSS", icon: cssIcon },
-    { name: "Sass", icon: sassIcon },
-    { name: "HTML", icon: htmlIcon },
-    { name: "Redux", icon: reduxIcon },
-    { name: "AWS", icon: amazonAws },
-    { name: "Saga", icon: sagaIcon },
-    { name: "Node JS", icon: nodeIcon },
-    { name: "UI", icon: uiIcon },
+    { name: "React JS", icon: FaReact },
+    { name: "Next JS", icon: SiNextdotjs },
+    { name: "JavaScript", icon: RiJavascriptFill },
+    { name: "TypeScript", icon: BiLogoTypescript },
+    { name: "Webpack", icon: SiWebpack },
+    { name: "CSS", icon: SiCss3 },
+    { name: "Sass", icon: SiSass },
+    { name: "Roll Up", icon: SiRollupdotjs },
+    { name: "Redux", icon: SiRedux },
+    { name: "AWS", icon: FaAws },
+    { name: "Shadcn", icon: SiShadcnui },
+    { name: "Golang", icon: FaGolang },
+    { name: "Node JS", icon: FaNodeJs },
+    { name: "GraphQL", icon: GrGraphQl },
+    { name: "GSAP", icon: MdAnimation },
+    { name: "Web Socket", icon: SiSocketdotio },
 ];
 
 const Skill = () => {
     return (
         <>
-            {skillsObj.map((skill, i) => (
-                <div key={i} className="skill-card">
+            {skillsObj.map((skill, i) => {
+                let Icon = skill.icon
+                return <div key={i} className="skill-card">
                     <div className="icon-ring">
-                        <Image
-                            src={skill.icon}
-                            alt={skill.name}
-                            width={40}
-                            height={40}
-                            style={{ objectFit: "contain" }}
-                        />
+                        <Icon fontSize={32} />
                     </div>
                     <p className="skill-name">{skill.name}</p>
                 </div>
-            ))}
+})}
         </>
     );
 };

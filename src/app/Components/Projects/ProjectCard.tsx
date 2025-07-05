@@ -59,7 +59,7 @@ const ProjectCard = ({ item }: Project) => {
                         <FaFileAlt size={14} /> Article
                     </a>
                 )}
-                {item.visitUrl && (
+                {item.visitUrl && !item?.vsCode && (
                     <a href={item.visitUrl} target="_blank" rel="noopener noreferrer">
                         <FaExternalLinkAlt size={14} /> Live
                     </a>

@@ -36,6 +36,7 @@ export const projectLists = [
         type : 'Packages',
         projects : [{
             name : 'Pub-Sub - Efficient Data Sharing',
+            description : "A simplified implementation of publish subscribe architecture that can be used with any application for better event and data handling",
             thumbnail: npm,
             tech : ['Publish Subscribe Architecture','Javascript'],
             code :'https://github.com/karandeepsingh7070/Pubsub-architecture',
@@ -59,15 +60,23 @@ export const projectLists = [
         type : "Tools",
         projects: [
             {
+            name : 'DRM Encoder',
+            description : "DRM Video Encoder & Player is a web application that allows users to convert normal videos to DRM-encrypted formats (Widevine, PlayReady, Raw Key) and test playback using Shaka Player.",
+            tech : ['Go', 'Shaka Packager'],
+            code :'https://github.com/karandeepsingh7070/CKEditor-custom-plugin-super-build',
+            },
+            {
+            name : 'Stash Share - VS Code Extention',
+            description: "StashShare is a simple VS Code extension that lets developers send and receive Git stashes over the local network. Whether you're pairing with a teammate or working across machines, quickly move your stashed changes without using branches, commits, or patches manually.",
+            vsCode: true,
+            visitUrl : "https://marketplace.visualstudio.com/items?itemName=WisdomBits.share-stash",
+            tech : ['vsce','Websocket','Javascript'],
+            code :'https://github.com/karandeepsingh7070/share-stash-VS-code-extention',
+        },
+            {
             name : 'CkEditor - custom Plugins',
             tech : ['CkEditor5','Webpack','Websocket','Javascript'],
             code :'https://github.com/karandeepsingh7070/CKEditor-custom-plugin-super-build',
-        },
-        {
-            name : 'Stash Share - VS Code Extention',
-            vsCode: true,
-            tech : ['CkEditor5','Webpack','Websocket','Javascript'],
-            code :'https://github.com/karandeepsingh7070/share-stash-VS-code-extention',
         },
         ]
     }

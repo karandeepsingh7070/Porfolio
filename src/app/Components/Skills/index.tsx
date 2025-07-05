@@ -4,26 +4,13 @@ import React, { useEffect, useRef } from 'react';
 import "./style.scss";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
 import withNoSSR from '@/app/withNoSSR';
 import Skill from './Skill';
-
-import productionIcon from "../../../assets/production.png";
-import narutoIcon from "../../../assets/naruto.png";
-import figma from "../../../assets/figma.png";
-import teachIcon from "../../../assets/teach.png";
 import { skillAnimation } from '@/app/Animation';
 
 const Skills = () => {
     gsap.registerPlugin(ScrollTrigger);
     const sectionRef = useRef<any>(null);
-
-    const otherSkills = [
-        { name: "Music Production", icon: productionIcon },
-        { name: "Figma", icon: figma },
-        { name: "Binge Watching", icon: narutoIcon },
-        { name: "Taking Sessions", icon: teachIcon },
-    ];
 
     useEffect(() => {
         skillAnimation()
@@ -54,7 +41,7 @@ const Skills = () => {
                         {/* <h2 className="skills-title title-font-family">Skills</h2> */}
                         <p className="skills-subtitle pop-theme-color-text">Welcome to my Arsenal!</p>
                         <p className="skills-description">
-                            From crafting <span className='title-font-family'>sleek</span> user interfaces to optimizing performance, here are the skills I bring to every project.
+                            From crafting <span className='title-font-family'>sleek</span> user interfaces to optimizing performance, here are the Tools I`ve worked with.
                         </p>
 
                         <div className="skills-grid">
