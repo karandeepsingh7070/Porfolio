@@ -17,6 +17,7 @@ interface Project {
         thumbnail?: any;
         icon?: any,
         organisation?: string;
+        vsCode?: boolean;
     };
 }
 

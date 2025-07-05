@@ -16,7 +16,7 @@ const Projects = () => {
         {type: 'Featured', position: 3}
     ];
     const [selectedTab, setTab] = useState<number>(3);
-    const sectionRef = useRef(null);
+    const sectionRef = useRef<HTMLElement | any>(null);
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -43,7 +43,7 @@ const Projects = () => {
     return (
         <section className='projects-section' ref={sectionRef}>
             <h2 className='projects-title title-font-family'>Projects</h2>
-            <p className='projects-subtitle title-font-family'>I've worked on</p>
+            <p className='projects-subtitle title-font-family'>I`ve worked on</p>
             <div className='tabs-container'>
                 {tabs.map((tab, i) => (
                     <button

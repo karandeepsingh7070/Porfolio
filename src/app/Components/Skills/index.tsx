@@ -16,7 +16,7 @@ import { skillAnimation } from '@/app/Animation';
 
 const Skills = () => {
     gsap.registerPlugin(ScrollTrigger);
-    const sectionRef = useRef(null);
+    const sectionRef = useRef<any>(null);
 
     const otherSkills = [
         { name: "Music Production", icon: productionIcon },

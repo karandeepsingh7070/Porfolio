@@ -23,7 +23,6 @@ export const projectLists = [
             name : 'Hoichoi',
             organisation :'Viewlift',
             tech : ['React Js','Js','Css/Sass','Video Js','Websocket'],
-            visitUrl : null
         },
         {
             name : 'My Outdoor Tv',
@@ -93,10 +92,7 @@ export const featuredLists =  {
             thumbnail: overwatchDocs,
             visitUrl : "https://docs.overwatchts.in/docs",
             tech : ['Nextra','Next Js', 'Typescript'],
-            code :'https://github.com/WisdomBits/overwatch-docs',
-            article:null,
-            Blog : null,
-            Docs : null
+            code :'https://github.com/WisdomBits/overwatch-docs'
         }
     ]
     }

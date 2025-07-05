@@ -61,7 +61,7 @@ const IntroPage = () => {
               {smilingAvatar()}
             </div>
           </div>
-          <p ref={greetingRef} className="intro-greeting">Hello, I'm</p>
+          <p ref={greetingRef} className="intro-greeting">Hello, I`m</p>
           <h1 ref={nameRef} className="intro-name">Karandeep Singh</h1>
           <p ref={roleRef} className="intro-role">
             <span className="highlight">Software Engineer</span> based in New Delhi, India with over 4 years of experience crafting complex applications with a diverse set of skills.
