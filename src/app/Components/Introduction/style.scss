@@ -148,7 +148,6 @@ a {
   border: none;
   border-radius: 9999px; // pill shape
   cursor: pointer;
-  margin-top: 1.5rem;
   transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   align-items: center;
@@ -165,7 +164,14 @@ a {
     box-shadow: 0 4px 12px rgba(212, 173, 252, 0.3);
   }
 }
-
+.social-icons {
+  svg {
+    &:hover {
+     color: #c49cfa !important;
+     box-shadow: 0 6px 20px rgba(212, 173, 252, 0.4);
+   }
+  }
+}
 @media (max-width: 768px) {
   .resume-cta {
     width: auto;

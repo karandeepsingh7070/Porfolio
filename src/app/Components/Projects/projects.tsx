@@ -5,31 +5,25 @@ export const projectLists = [
     {
         type : 'OTT',
         projects : [
-            {
-            name : 'Monumental Sports Network',
-            organisation :'Viewlift',
-            description: "Developed and maintained key features for a high-traffic sports streaming platform, improving user engagement and content delivery.",
-            disclaimer : "Worked on this under Employement with Viewlift",
-            tech : ["React JS", "Typescript", "Css/Scss", "Pub-Sub", "GraphQL"],
-            visitUrl : "https://www.monumentalsportsnetwork.com/"
-        },
-        {
-            name : 'LivGolf+',
-            organisation :'Viewlift',
-            tech : ['React Js','Javascript','Typescript','Css/Sass','Video Js','Stripe','GraphQL APIs'],
-            visitUrl :"https://livgolfplus.com/"
-        },
-        {
-            name : 'Hoichoi',
-            organisation :'Viewlift',
-            tech : ['React Js','Js','Css/Sass','Video Js','Websocket'],
-        },
-        {
-            name : 'My Outdoor Tv',
-            organisation :'Viewlift',
-            tech : ['React Js','Js','Css/Sass','Video Js','Websocket'],
-            visitUrl : "https://app.myoutdoortv.com/"
-        },
+        //     {
+        //     name : 'Monumental Sports Network',
+        //     organisation :'Viewlift',
+        //     // description: "Developed and maintained key features for a high-traffic sports streaming platform, improving user engagement.",
+        //     tech : ["React JS", "Ts", "Css/Scss", "Pub-Sub", "GraphQL", "Stripe"],
+        //     visitUrl : "https://www.monumentalsportsnetwork.com/"
+        // },
+        // {
+        //     name : 'LivGolf+',
+        //     organisation :'Viewlift',
+        //     tech : ['React Js','Js','Ts','Css/Sass','Video Js','Stripe','GraphQL'],
+        //     visitUrl :"https://livgolfplus.com/"
+        // },
+        // {
+        //     name : 'My Outdoor Tv',
+        //     organisation :'Viewlift',
+        //     tech : ["Adobe Analytics", 'React Js','Js','Css/Sass','Video Js','Websocket', "SSE"],
+        //     visitUrl : "https://app.myoutdoortv.com/"
+        // },
     ]
     },
     {
@@ -44,12 +38,14 @@ export const projectLists = [
         },
         {
             name : 'Monetisation SDK - Stripe',
+            description : "Built a plug-and-play package for integrating payments with a configuration-driven UI, and integrated WebSocket to handle webhook responses from the backend.",
             thumbnail: npm,
             tech : ['Stripe','Typescript','Javascript','React','Avalara'],
         },
         {
             name : 'Overwatch Ts',
             thumbnail: npm,
+            description: "A minimal, high-performance React state management library ",
             tech : ['Typescript','Next Js'],
             code : 'https://github.com/WisdomBits/overwatch',
             visitUrl : "https://www.npmjs.com/package/overwatch-ts",
@@ -75,6 +71,7 @@ export const projectLists = [
         },
             {
             name : 'CkEditor - custom Plugins',
+            description: "A Custom Super build of CK Rich Text Editor",
             tech : ['CkEditor5','Webpack','Websocket','Javascript'],
             code :'https://github.com/karandeepsingh7070/CKEditor-custom-plugin-super-build',
         },

@@ -10,7 +10,7 @@ import FeaturedProjectCard from './FeaturedProjectCard';
 
 const Projects = () => {
     const tabs = [
-        { type: 'OTT', position: 0 },
+        { type: 'Employment', position: 0 },
         { type: 'NPM Packages', position: 1 },
         { type: 'Tools', position: 2 },
         {type: 'Featured', position: 3}
@@ -56,7 +56,7 @@ const Projects = () => {
                 ))}
             </div>
 
-            <div className='proj-card-wrapper'>
+            <div className={!selectedTab ? 'r-c proj-card-wrapper' : 'proj-card-wrapper'}>
                 {projectLists[selectedTab]?.projects?.length
                     ? projectLists[selectedTab].projects.map((project, i) => (
                         <ProjectCard key={i} item={project} />
