@@ -1,0 +1,39 @@
+.wrap {
+  display: inline-flex;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-small);
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--bg);
+  white-space: nowrap;
+  transition: background var(--dur-fast) var(--ease-standard);
+
+  &:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--border-strong);
+
+  &:hover {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+}

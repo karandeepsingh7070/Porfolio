@@ -1,0 +1,37 @@
+.stack {
+  position: relative;
+}
+
+.wrap {
+  position: relative;
+  height: 180vh;
+
+  @media (max-width: 900px) {
+    height: auto;
+  }
+}
+
+.lastWrap {
+  height: 100dvh;
+
+  @media (max-width: 900px) {
+    height: auto;
+  }
+}
+
+.card {
+  position: sticky;
+  top: 0;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  background: var(--bg);
+  transform-origin: center top;
+  will-change: transform;
+
+  @media (max-width: 900px) {
+    position: static;
+    min-height: auto;
+    padding-block: var(--space-16);
+  }
+}

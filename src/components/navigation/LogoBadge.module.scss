@@ -1,0 +1,84 @@
+.wrap {
+  display: inline-block;
+  perspective: 700px;
+  flex-shrink: 0;
+}
+
+.badge {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  backface-visibility: hidden;
+  border: 1.5px solid var(--border-strong);
+  background: var(--bg-raised);
+}
+
+.avatarCrop {
+  width: 155%;
+  height: 155%;
+  margin-top: -18%;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+
+.back {
+  transform: rotateY(180deg);
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.staticMark {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-strong);
+  background: var(--bg-raised);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+// The illustrated avatar is line art drawn for a light background;
+// on dark it reads as a black silhouette, so swap to plain initials.
+:global([data-theme='dark']) {
+  .badge {
+    display: none;
+  }
+  .staticMark {
+    display: flex;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme='light'])) {
+    .badge {
+      display: none;
+    }
+    .staticMark {
+      display: flex;
+    }
+  }
+}

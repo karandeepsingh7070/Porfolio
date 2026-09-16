@@ -1,0 +1,23 @@
+.toggle {
+  position: relative;
+  width: 3.4rem;
+  height: 1.9rem;
+  border-radius: var(--radius-pill);
+  background: var(--border-strong);
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.knob {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--ink);
+  font-size: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg);
+}

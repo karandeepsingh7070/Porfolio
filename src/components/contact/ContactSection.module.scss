@@ -1,0 +1,53 @@
+.section {
+  padding-block: var(--space-32);
+  scroll-margin-top: 4.5rem;
+}
+
+.heading {
+  font-size: var(--fs-display);
+  max-width: 16ch;
+  margin-bottom: var(--space-8);
+}
+
+.body {
+  font-size: var(--fs-body-lg);
+  color: var(--ink-muted);
+  max-width: 34rem;
+  margin-bottom: var(--space-8);
+  line-height: 1.6;
+}
+
+.socials {
+  display: flex;
+  gap: var(--space-6);
+  margin-top: var(--space-16);
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  color: var(--ink-muted);
+  transition: color var(--dur-fast) var(--ease-standard), border-color var(--dur-fast) var(--ease-standard),
+    transform var(--dur-fast) var(--ease-spring);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-3px) rotate(-6deg);
+  }
+}
+
+.socialImg {
+  width: 20px;
+  height: 20px;
+}
+
+:global([data-theme='dark']) .socialImg {
+  filter: invert(1);
+}
