@@ -16,7 +16,7 @@ export default function AboutSection() {
           <p>
             That sudden shift led to my first real job, where I built frontend systems for OTT
             streaming apps. Diving deep into software got me into open source, where I built my
-            own state management library and developer tools. Now I <strong>freelance</strong>,
+            own state management library and developer tools. Now I sometimes <strong>freelance</strong>,
             solving tough frontend problems and building custom tools for different teams.
           </p>
           <p>
