@@ -29,7 +29,7 @@ export const clientGroups: ClientGroup[] = [
   {
     title: 'Worked with',
     clients: [
-      { name: 'Delhi Board of School Education', logo: dbseLogo },
+      { name: 'DBSE - Delhi Government', logo: dbseLogo },
       { name: 'SuplyCMS', logo: suplycmsLogo },
     ],
   },

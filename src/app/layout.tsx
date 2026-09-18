@@ -10,6 +10,7 @@ const bricolage = Bricolage_Grotesque({
   weight: ['500', '600', '700', '800'],
   variable: '--font-bricolage',
   display: 'swap',
+  adjustFontFallback: false,
 })
 
 const outfit = Outfit({
