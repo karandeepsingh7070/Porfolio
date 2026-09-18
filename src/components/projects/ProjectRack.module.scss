@@ -46,6 +46,18 @@
   margin-bottom: var(--space-2);
 }
 
+.viewliftBadge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-radius: var(--radius-pill);
+  padding: 0.2rem 0.6rem;
+  margin-bottom: var(--space-3);
+}
+
 .description {
   color: var(--ink-muted);
   font-size: var(--fs-small);

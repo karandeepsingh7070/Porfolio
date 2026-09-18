@@ -61,6 +61,7 @@ export default function ProjectRack({ projects }: { projects: IndexProject[] }) 
         {projects.map((project) => (
           <div key={project.name} className={styles.card}>
             <h4 className={styles.name}>{project.name}</h4>
+            {project.viewlift && <span className={styles.viewliftBadge}>Viewlift</span>}
             <p className={styles.description}>{project.description}</p>
             <div className={styles.tags}>
               {project.tech.map((tech) => (

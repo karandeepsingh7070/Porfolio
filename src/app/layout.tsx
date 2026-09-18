@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Bricolage_Grotesque, Outfit, JetBrains_Mono } from 'next/font/google'
 import Nav from '@/components/navigation/Nav'
 import SmoothScroll from '@/components/motion/SmoothScroll'
+import StructuredData from '@/components/seo/StructuredData'
 import './globals.css'
 
 const bricolage = Bricolage_Grotesque({
@@ -25,32 +26,72 @@ const jetbrains = JetBrains_Mono({
   display: 'swap',
 })
 
+const title = 'Karandeep Singh (Karan) — Freelance Software & Frontend Engineer'
+const description =
+  'Karan (Karandeep Singh) is a freelance software engineer and frontend engineer in New Delhi, building React and Next.js architecture for high-traffic platforms, plus the open-source tools other engineers reach for.'
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.karandeepsingh.info'),
-  title: 'Karandeep Singh, Senior Software Engineer',
-  description:
-    'Senior Software Engineer building frontend architecture for high-traffic platforms and the open-source tools other engineers reach for.',
+  title,
+  description,
+  keywords: [
+    'Karandeep Singh',
+    'Karan',
+    'Karan Singh',
+    'freelance software engineer',
+    'freelance frontend engineer',
+    'frontend engineer',
+    'software engineer',
+    'senior software engineer',
+    'React developer',
+    'Next.js developer',
+    'TypeScript developer',
+    'OTT frontend architecture',
+    'open source developer',
+    'Overwatch TS',
+    'state management library',
+    'New Delhi software engineer',
+    'remote frontend engineer',
+    'hire freelance frontend engineer',
+  ],
+  authors: [{ name: 'Karandeep Singh', url: 'https://www.karandeepsingh.info' }],
+  creator: 'Karandeep Singh',
+  publisher: 'Karandeep Singh',
+  category: 'technology',
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
   openGraph: {
-    title: 'Karandeep Singh, Senior Software Engineer',
-    description:
-      'Senior Software Engineer building frontend architecture for high-traffic platforms and the open-source tools other engineers reach for.',
+    title,
+    description,
     url: 'https://www.karandeepsingh.info/',
     siteName: 'Karandeep Singh',
+    locale: 'en_US',
     images: [
       {
         url: '/portfolio.png',
         width: 1200,
         height: 630,
-        alt: 'Karandeep Singh, Senior Software Engineer',
+        alt: 'Karandeep Singh, freelance software & frontend engineer',
       },
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Karandeep Singh, Senior Software Engineer',
-    description:
-      'Senior Software Engineer building frontend architecture for high-traffic platforms and the open-source tools other engineers reach for.',
+    title,
+    description,
     images: ['/portfolio.png'],
   },
 }
@@ -75,6 +116,7 @@ export default function RootLayout({
     <html lang="en" className={`${bricolage.variable} ${outfit.variable} ${jetbrains.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <StructuredData />
       </head>
       <body>
         <SmoothScroll />
