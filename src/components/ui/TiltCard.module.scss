@@ -1,0 +1,26 @@
+.card {
+  position: relative;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-standard);
+  background: radial-gradient(
+    280px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(var(--shadow-color), 0.06),
+    transparent 70%
+  );
+}
+
+.card:hover .spotlight {
+  opacity: 1;
+}

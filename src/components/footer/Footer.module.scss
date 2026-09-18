@@ -1,0 +1,22 @@
+.footer {
+  border-top: 1px solid var(--border);
+  padding-block: var(--space-8);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  color: var(--ink-faint);
+}
+
+.top {
+  transition: color var(--dur-fast) var(--ease-standard);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--accent);
+  }
+}

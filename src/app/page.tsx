@@ -1,71 +1,23 @@
-"use client";
-import Lenis from '@studio-freight/lenis'
-import { useEffect, useRef } from 'react'
-import {useIntersection} from 'react-use';
-import { appVisibility, handleAboutSectionAnimation, preLoaderAnimation } from './Animation';
-// import About from './Components/About/index';
-// import Experience from './Components/Experience/index';
-import IntroPage from './Components/Introduction/IntroPage';
-// import PageCover from './Components/PageCover/index';
-import Projects from './Components/Projects/index';
-import Skills from './Components/Skills/index';
-// import DisclaimerHeader from "./Components/DisclaimerHeader/index"
-import "./globals.css"
-import withNoSSR from './withNoSSR';
-import ConnectCard from './Components/ConnectCard';
-function Home() {
+import Hero from '@/components/hero/Hero'
+import ProjectsSection from '@/components/projects/ProjectsSection'
+import ExperienceSection from '@/components/experience/ExperienceSection'
+import ClientsSection from '@/components/clients/ClientsSection'
+import CapabilitiesSection from '@/components/capabilities/CapabilitiesSection'
+import AboutSection from '@/components/about/AboutSection'
+import ContactSection from '@/components/contact/ContactSection'
+import Footer from '@/components/footer/Footer'
 
-  let appRef = useRef(null)
-  let aboutSectionRef = useRef(null)
-  let studioIconRef = useRef(null)
-  const intersection = useIntersection(aboutSectionRef,{
-    root : null,
-    rootMargin : "0px",
-    threshold : 0.4,
-  })
-  const handleCursor = () => {
-    const cursor: any = document.querySelector(".cursor")
-    if (cursor) {
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.pageX + 'px'
-            cursor.style.top = e.pageY + 'px'
-        })
-    }
-  }
-
-  useEffect(() => {
-    const lenis = new Lenis()
-    function raf(time: any) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
-    requestAnimationFrame(raf)
-
-    appVisibility(appRef.current)
-    preLoaderAnimation(studioIconRef.current)
-    handleCursor()
-  },[])
-  
-
-  intersection && intersection.intersectionRatio  < 0.4 ? 
-  handleAboutSectionAnimation(false) : handleAboutSectionAnimation(true)
-  return (<>
-    <div className='cursor'></div>
-  <div className='app-wrapper' ref={appRef}>
-    {/* <DisclaimerHeader /> */}
-  {/* <PageCover elementRef={studioIconRef}  /> */}
-      <div className="section light-theme-text-color light-theme-bg-color">
-        <IntroPage />
-      </div>
-      {/* <div className="section" ref={aboutSectionRef}><About /></div> */}
-      <Skills />
-      {/* <div className="section exp-section"><Experience /></div> */}
-      {/* <div className='section proj-section'> */}
-        <Projects />
-        {/* </div>  */}
-      <ConnectCard />
-      </div>
-  </>)
+export default function Home() {
+  return (
+    <main id="main">
+      <Hero />
+      <ProjectsSection />
+      <ExperienceSection />
+      <ClientsSection />
+      <CapabilitiesSection />
+      <AboutSection />
+      <ContactSection />
+      <Footer />
+    </main>
+  )
 }
-export default withNoSSR(Home);

@@ -1,0 +1,38 @@
+.field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  > * {
+    pointer-events: auto;
+  }
+}
+
+.sticker {
+  position: absolute;
+  padding: 0.7rem 1.2rem;
+  border-radius: var(--radius-pill);
+  background: var(--bg-raised);
+  border: 1.5px solid var(--border-strong);
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: grab;
+  box-shadow: 0 8px 24px rgba(var(--shadow-color), 0.08);
+  user-select: none;
+  touch-action: none;
+}
+
+.sticker.accent {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .sticker {
+    padding: 0.55rem 0.9rem;
+    font-size: 0.72rem;
+  }
+}
