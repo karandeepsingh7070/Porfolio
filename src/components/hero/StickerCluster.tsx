@@ -6,11 +6,11 @@ import styles from './StickerCluster.module.scss'
 
 const stickers = [
   { label: 'Open source', accent: true, x: '2%', y: '6%', rotate: -6 },
-  { label: '5 yrs experience', x: '58%', y: '2%', rotate: 4 },
-  { label: 'GraphQL', x: '0%', y: '46%', rotate: 3 },
+  { label: '6 yrs experience', x: '58%', y: '2%', rotate: 4 },
+  { label: 'Cloud', x: '0%', y: '46%', rotate: 3 },
   { label: 'Team lead', x: '78%', y: '20%', rotate: -3 },
   { label: 'New Delhi', x: '4%', y: '82%', rotate: 5 },
-  { label: 'DRM tooling', x: '70%', y: '86%', rotate: -5 },
+  { label: 'LLM tinkerer', x: '70%', y: '86%', rotate: -4 },
 ]
 
 export default function StickerCluster() {

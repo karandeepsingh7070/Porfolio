@@ -10,17 +10,21 @@ export default function AboutSection() {
         </Reveal>
         <Reveal delay={0.1} className={styles.body}>
           <p>
-            I got into this because I was curious how websites actually worked. That curiosity
-            turned into building frontend architecture for a high-traffic streaming platform,
-            then into an open-source state management library, then into a VS&nbsp;Code
-            extension for sharing git stashes over a network. The thread running through all of
-            it: <strong>I like building the tool, not just using it.</strong>
+            I started out working with robots and PCBs, completely focused on hardware. Then,
+            almost out of nowhere, I got hooked on <strong>web development</strong>.
           </p>
           <p>
-            Most of my day job is the unglamorous plumbing, state management, data fetching,
-            performance, that has to be right before a product ever feels simple. Outside of
-            work, if something is annoying enough at my desk, I usually end up trying to fix it
-            with a side project.
+            That sudden shift led to my first real job, where I built frontend systems for OTT
+            streaming apps. Diving deep into software got me into open source, where I built my
+            own state management library and developer tools. Now I <strong>sometimes freelance</strong>,
+            solving tough frontend problems and building custom tools for different teams.
+          </p>
+          <p>
+            In the end, <strong>I prefer building the tools to using them</strong>; the bulk of my
+            time is devoted to the more technical aspects, such as managing state, speeding up
+            data loads, and eliminating lag, to ensure the applications run smoothly. And each
+            time I get stuck or feel frustrated at my desk, I put on my headphones and{' '}
+            <em>go for a walk</em>.
           </p>
         </Reveal>
       </div>

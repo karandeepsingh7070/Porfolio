@@ -21,6 +21,11 @@
   font-weight: 600;
 }
 
+.body em {
+  font-style: italic;
+  color: var(--ink);
+}
+
 .body p + p {
   margin-top: var(--space-6);
 }

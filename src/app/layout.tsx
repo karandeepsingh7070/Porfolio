@@ -27,13 +27,13 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.karandeepsingh.info'),
-  title: 'Karandeep Singh, Senior Frontend Engineer',
+  title: 'Karandeep Singh, Senior Software Engineer',
   description:
-    'Senior Frontend Engineer building frontend architecture for high-traffic platforms and the open-source tools other engineers reach for.',
+    'Senior Software Engineer building frontend architecture for high-traffic platforms and the open-source tools other engineers reach for.',
   openGraph: {
-    title: 'Karandeep Singh, Senior Frontend Engineer',
+    title: 'Karandeep Singh, Senior Software Engineer',
     description:
-      'Senior Frontend Engineer building frontend architecture for high-traffic platforms and the open-source tools other engineers reach for.',
+      'Senior Software Engineer building frontend architecture for high-traffic platforms and the open-source tools other engineers reach for.',
     url: 'https://www.karandeepsingh.info/',
     siteName: 'Karandeep Singh',
     images: [
@@ -41,16 +41,16 @@ export const metadata: Metadata = {
         url: '/portfolio.png',
         width: 1200,
         height: 630,
-        alt: 'Karandeep Singh, Senior Frontend Engineer',
+        alt: 'Karandeep Singh, Senior Software Engineer',
       },
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Karandeep Singh, Senior Frontend Engineer',
+    title: 'Karandeep Singh, Senior Software Engineer',
     description:
-      'Senior Frontend Engineer building frontend architecture for high-traffic platforms and the open-source tools other engineers reach for.',
+      'Senior Software Engineer building frontend architecture for high-traffic platforms and the open-source tools other engineers reach for.',
     images: ['/portfolio.png'],
   },
 }

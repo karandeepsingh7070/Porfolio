@@ -17,4 +17,4 @@ export const socialLinks: SocialLink[] = [
 ]
 
 export const email = 'karandeepsinghworkspace@gmail.com'
-export const resumeHref = '/Karandeep%20Singh%20FE%20Resume.pdf'
+export const resumeHref = '/Karandeep%20Singh%20CS%20Resume.pdf'

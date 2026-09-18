@@ -69,11 +69,11 @@ export default function CapabilitiesSection() {
                   whileHover={prefersReducedMotion ? undefined : { scale: 1.12, rotate: 0, y: -5 }}
                   whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
                 >
-                  {cap.icon && (
+                  {(cap.icon || cap.iconSrc) && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       className={styles.icon}
-                      src={`https://cdn.simpleicons.org/${cap.icon}`}
+                      src={cap.iconSrc ?? `https://cdn.simpleicons.org/${cap.icon}`}
                       alt=""
                       onError={(e) => {
                         e.currentTarget.style.display = 'none'

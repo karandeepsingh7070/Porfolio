@@ -1,0 +1,19 @@
+.stack {
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
+  box-shadow: 0 24px 48px -24px rgba(var(--shadow-color), 0.35);
+  will-change: transform;
+}
+
+.image {
+  object-fit: cover;
+}

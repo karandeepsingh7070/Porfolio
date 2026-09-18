@@ -1,9 +1,10 @@
 'use client'
 
 import { useRef } from 'react'
+import Image from 'next/image'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import Reveal from '@/components/ui/Reveal'
-import { experience, highlights } from '@/data/experience'
+import { experience, writing } from '@/data/experience'
 import styles from './ExperienceSection.module.scss'
 
 export default function ExperienceSection() {
@@ -33,6 +34,11 @@ export default function ExperienceSection() {
                 <p className={styles.period}>{entry.period}</p>
                 <h3 className={styles.title}>{entry.title}</h3>
                 <p className={styles.org}>
+                  {entry.logo && (
+                    <span className={styles.orgLogo}>
+                      <Image src={entry.logo} alt="" className={styles.orgLogoImg} />
+                    </span>
+                  )}
                   {entry.organisation}, {entry.context}
                 </p>
                 <ul className={styles.points}>
@@ -45,17 +51,22 @@ export default function ExperienceSection() {
           </div>
         </div>
 
-        <div className={styles.highlights}>
-          {highlights.map((highlight) => (
-            <Reveal key={highlight.text}>
-              <p className={styles.highlightText}>{highlight.text}</p>
-              {highlight.href && (
-                <a className={styles.highlightLink} href={highlight.href} target="_blank" rel="noopener noreferrer">
-                  {highlight.hrefLabel ?? 'Read more'}
+        <div className={styles.writing}>
+          <Reveal>
+            <p className={styles.writingKicker}>Some things I&apos;ve written</p>
+          </Reveal>
+          <div className={styles.writingGrid}>
+            {writing.map((entry) => (
+              <Reveal key={entry.href} className={styles.writingCard}>
+                <a href={entry.href} target="_blank" rel="noopener noreferrer" className={styles.writingLink}>
+                  <span className={styles.writingSource}>{entry.source}</span>
+                  <h3 className={styles.writingTitle}>{entry.title}</h3>
+                  <p className={styles.writingDescription}>{entry.description}</p>
+                  <span className={styles.writingCta}>Read the article ↗</span>
                 </a>
-              )}
-            </Reveal>
-          ))}
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>

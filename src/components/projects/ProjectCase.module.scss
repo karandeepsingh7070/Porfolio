@@ -12,9 +12,27 @@
 }
 
 .meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.kicker {
+  font-family: var(--font-mono);
   font-size: var(--fs-small);
   color: var(--ink-faint);
-  margin-bottom: var(--space-3);
+}
+
+.badge {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-radius: var(--radius-pill);
+  padding: 0.25rem 0.7rem;
 }
 
 .name {
