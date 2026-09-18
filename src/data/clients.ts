@@ -1,6 +1,8 @@
 import cnbcLogo from '@/assets/logos/cnbc.webp'
 import dbseLogo from '@/assets/logos/dbse.png'
 import suplycmsLogo from '@/assets/logos/suplycms.png'
+import dirtvisionLogo from '@/assets/logos/dirtvision.webp'
+import motvLogo from '@/assets/logos/motv.png'
 import type { StaticImageData } from 'next/image'
 
 export interface ClientLogo {
@@ -20,6 +22,8 @@ export const clientGroups: ClientGroup[] = [
     clients: [
       { name: 'CNBC', logo: cnbcLogo },
       { name: 'USA Network', logoSrc: '/logos/usa-network.svg' },
+      { name: 'DIRTVision', logo: dirtvisionLogo },
+      { name: 'My Outdoor TV', logo: motvLogo },
     ],
   },
   {

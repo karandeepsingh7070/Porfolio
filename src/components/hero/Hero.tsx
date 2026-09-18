@@ -28,7 +28,7 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p className={styles.subhead} initial={initial} animate="visible" custom={0.25} variants={lineVariants}>
-          I&apos;m <strong>Karandeep</strong>, a Senior Software Engineer in New Delhi, building
+          I&apos;m <strong>Karan</strong>, a Senior Software Engineer in New Delhi, building
           architecture for high-traffic platforms and the open-source tools other engineers
           reach for.
         </motion.p>

@@ -10,7 +10,7 @@ const stickers = [
   { label: 'Cloud', x: '0%', y: '46%', rotate: 3 },
   { label: 'Team lead', x: '78%', y: '20%', rotate: -3 },
   { label: 'New Delhi', x: '4%', y: '82%', rotate: 5 },
-  { label: 'LLM tinkerer', x: '70%', y: '86%', rotate: -4 },
+  { label: 'LLM/AI Handyman', x: '70%', y: '86%', rotate: -4 },
 ]
 
 export default function StickerCluster() {

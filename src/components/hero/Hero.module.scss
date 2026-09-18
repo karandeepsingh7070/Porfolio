@@ -51,5 +51,6 @@
   @media (max-width: 900px) {
     min-height: 380px;
     margin-top: var(--space-8);
+    justify-content: flex-end;
   }
 }

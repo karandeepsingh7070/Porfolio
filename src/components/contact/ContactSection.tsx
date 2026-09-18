@@ -8,11 +8,8 @@ export default function ContactSection() {
     <section id="contact" className={styles.section}>
       <div className="container">
         <Reveal>
-          <h2 className={styles.heading}>Let&apos;s talk.</h2>
-          <p className={styles.body}>
-            I&apos;m always up for a conversation about frontend architecture, a gnarly
-            performance bug, or just good developer tools.
-          </p>
+          <h2 className={styles.heading}>You&apos;ve reached the bottom.</h2>
+          <p className={styles.subheading}>Or maybe, a new beginning — let&apos;s connect.</p>
           <CopyEmail email={email} />
 
           <div className={styles.socials}>
