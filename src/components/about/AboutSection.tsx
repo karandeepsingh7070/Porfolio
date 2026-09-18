@@ -16,11 +16,11 @@ export default function AboutSection() {
           <p>
             That sudden shift led to my first real job, where I built frontend systems for OTT
             streaming apps. Diving deep into software got me into open source, where I built my
-            own state management library and developer tools. Now I <strong>sometimes freelance</strong>,
+            own state management library and developer tools. Now I <strong>freelance</strong>,
             solving tough frontend problems and building custom tools for different teams.
           </p>
           <p>
-            In the end, <strong>I prefer building the tools to using them</strong>; the bulk of my
+            In the end, <strong>I prefer building the tools to using them</strong>. The bulk of my
             time is devoted to the more technical aspects, such as managing state, speeding up
             data loads, and eliminating lag, to ensure the applications run smoothly. And each
             time I get stuck or feel frustrated at my desk, I put on my headphones and{' '}
