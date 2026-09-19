@@ -1,6 +1,8 @@
 import overwatchBanner from '@/assets/overwatch.png'
 import overwatchSite from '@/assets/overwatch-site.webp'
 import overwatchDocs from '@/assets/overwatch-docs.png'
+import llmRecallAvatar from '@/assets/llm-recall-avatar.webp'
+import llmRecallPlayground from '@/assets/llm-recall-playground.webp'
 import npm from '@/assets/npm.png'
 import type { StaticImageData } from 'next/image'
 
@@ -52,6 +54,27 @@ export const caseStudies: CaseStudy[] = [
         href: 'https://medium.com/@karandeepsinghworkspace/efficient-data-sharing-in-react-a-deep-dive-into-pub-sub-architecture-3af5362bd8c9',
       },
     ],
+  },
+  {
+    slug: 'llm-recall-api',
+    name: 'LLM Recall API',
+    heading: 'Memory Layer for AI',
+    badge: 'Open Source',
+    organisation: 'Open source',
+    role: 'Author',
+    thumbnail: llmRecallAvatar,
+    gallery: [
+      { src: llmRecallAvatar, alt: 'LLM Recall API, built with Claude, ChatGPT, Gemini, and Antigravity' },
+      { src: llmRecallPlayground, alt: 'The Memory Bank playground UI' },
+    ],
+    problem:
+      "Every AI app I've used has the same problem - you either paste your whole context back in every prompt, or you pay a vendor to remember it for you.",
+    thinking: 'So I built something in between. I wanted it to run entirely on my own machine, no API keys.',
+    solution:
+      'LLM Recall a self-hosted memory engine that extracts atomic facts from raw text and embeds them locally. It ships a REST API, an MCP server for Claude Desktop and Cursor, and a live playground for testing it.',
+    result: 'Fully open source, runs offline once the models are cached, with hybrid vector and keyword search over everything it remembers.',
+    tech: ['TypeScript', 'Node.js', 'PostgreSQL', 'pgvector', 'Hono', 'transformers.js', 'MCP'],
+    links: [{ label: 'GitHub', href: 'https://github.com/karandeepsingh7070/LLM-Recall-API' }],
   },
 ]
 
