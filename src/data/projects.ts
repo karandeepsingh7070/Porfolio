@@ -71,7 +71,7 @@ export const caseStudies: CaseStudy[] = [
       "Every AI app I've used has the same problem - you either paste your whole context back in every prompt, or you pay a vendor to remember it for you.",
     thinking: 'So I built something in between. I wanted it to run entirely on my own machine, no API keys.',
     solution:
-      'LLM Recall API: a self-hosted memory engine that extracts atomic facts from raw text and embeds them locally. It ships a REST API, an MCP server for Claude Desktop and Cursor, and a live playground for testing it.',
+      'LLM Recall a self-hosted memory engine that extracts atomic facts from raw text and embeds them locally. It ships a REST API, an MCP server for Claude Desktop and Cursor, and a live playground for testing it.',
     result: 'Fully open source, runs offline once the models are cached, with hybrid vector and keyword search over everything it remembers.',
     tech: ['TypeScript', 'Node.js', 'PostgreSQL', 'pgvector', 'Hono', 'transformers.js', 'MCP'],
     links: [{ label: 'GitHub', href: 'https://github.com/karandeepsingh7070/LLM-Recall-API' }],
