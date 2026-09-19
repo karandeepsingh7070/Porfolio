@@ -1,16 +1,16 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, type CSSProperties } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import styles from './StickerCluster.module.scss'
 
 const stickers = [
   { label: 'Open source', accent: true, x: '2%', y: '6%', rotate: -6 },
-  { label: '6 yrs experience', x: '58%', y: '2%', rotate: 4 },
+  { label: '6 yrs experience', x: '58%', y: '2%', xMobile: '38%', rotate: 4 },
   { label: 'Cloud', x: '0%', y: '46%', rotate: 3 },
-  { label: 'Team lead', x: '78%', y: '20%', rotate: -3 },
+  { label: 'Team lead', x: '78%', y: '20%', xMobile: '36%', rotate: -3 },
   { label: 'New Delhi', x: '4%', y: '82%', rotate: 5 },
-  { label: 'LLM/AI Handyman', x: '70%', y: '86%', rotate: -4 },
+  { label: 'LLM/AI Handyman', x: '70%', y: '86%', xMobile: '8%', yMobile: '92%', rotate: -4 },
 ]
 
 export default function StickerCluster() {
@@ -23,7 +23,14 @@ export default function StickerCluster() {
         <motion.div
           key={sticker.label}
           className={`${styles.sticker} ${sticker.accent ? styles.accent : ''}`}
-          style={{ left: sticker.x, top: sticker.y }}
+          style={
+            {
+              '--x': sticker.x,
+              '--y': sticker.y,
+              '--x-mobile': sticker.xMobile ?? sticker.x,
+              '--y-mobile': sticker.yMobile ?? sticker.y,
+            } as CSSProperties
+          }
           initial={{ opacity: 0, scale: 0.6, rotate: sticker.rotate * 2 }}
           animate={{ opacity: 1, scale: 1, rotate: sticker.rotate }}
           transition={{ delay: 0.5 + i * 0.08, type: 'spring', stiffness: 260, damping: 18 }}
