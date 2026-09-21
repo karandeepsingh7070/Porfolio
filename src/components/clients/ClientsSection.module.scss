@@ -31,10 +31,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  @media (max-width: 640px) {
-    align-items: flex-start;
-  }
 }
 
 .groupTitle {
@@ -43,10 +39,6 @@
   color: var(--ink-faint);
   text-align: center;
   margin-bottom: var(--space-8);
-
-  @media (max-width: 640px) {
-    text-align: left;
-  }
 }
 
 .row {
@@ -55,10 +47,6 @@
   justify-content: center;
   align-items: flex-start;
   gap: var(--space-8);
-
-  @media (max-width: 640px) {
-    justify-content: flex-start;
-  }
 }
 
 .item {

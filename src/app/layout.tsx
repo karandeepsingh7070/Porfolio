@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Bricolage_Grotesque, Outfit, JetBrains_Mono } from 'next/font/google'
 import Nav from '@/components/navigation/Nav'
 import SmoothScroll from '@/components/motion/SmoothScroll'
@@ -118,6 +119,18 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <StructuredData />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-PH9WXTPZPS"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-PH9WXTPZPS');
+          `}
+        </Script>
       </head>
       <body>
         <SmoothScroll />

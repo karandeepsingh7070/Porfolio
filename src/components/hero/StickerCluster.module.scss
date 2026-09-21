@@ -10,6 +10,8 @@
 
 .sticker {
   position: absolute;
+  left: var(--x);
+  top: var(--y);
   padding: 0.7rem 1.2rem;
   border-radius: var(--radius-pill);
   background: var(--bg-raised);
@@ -34,5 +36,7 @@
   .sticker {
     padding: 0.55rem 0.9rem;
     font-size: 0.72rem;
+    left: var(--x-mobile);
+    top: var(--y-mobile);
   }
 }
