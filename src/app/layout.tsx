@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
 import { Bricolage_Grotesque, Outfit, JetBrains_Mono } from 'next/font/google'
-import Nav from '@/components/navigation/Nav'
-import SmoothScroll from '@/components/motion/SmoothScroll'
 import StructuredData from '@/components/seo/StructuredData'
 import './globals.css'
 
@@ -115,7 +113,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${bricolage.variable} ${outfit.variable} ${jetbrains.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${bricolage.variable} ${outfit.variable} ${jetbrains.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <StructuredData />
@@ -133,8 +131,6 @@ export default function RootLayout({
         </Script>
       </head>
       <body>
-        <SmoothScroll />
-        <Nav />
         {children}
       </body>
     </html>

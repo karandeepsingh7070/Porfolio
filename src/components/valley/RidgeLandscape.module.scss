@@ -1,0 +1,215 @@
+.landscape {
+  --haven-grass: #9eb987;
+  --haven-edge: #7e9f77;
+  --haven-leaf: #4f7955;
+  --haven-stem: #426847;
+  --ridge-sky-top: #edeae2;
+  --ridge-sky-bottom: #f6e2c8;
+  --ridge-sun: #ffe9b7;
+  --ridge-ray: #fff3b0;
+  --ridge-cloud: #fff9ed;
+  --ridge-far: #b6c7c5;
+  --ridge-middle: #8fadaa;
+  --ridge-near: #72958c;
+  --ridge-snow: #e7ebe1;
+  --ridge-mist: #d8e3d6;
+  --ridge-haze: #d5ded4;
+  --ridge-mat: #e9d9b9;
+  --ridge-mat-stripe: #ac7768;
+  --ridge-mat-thread: #8b9c81;
+  --ridge-rock: #85988b;
+  --ridge-rock-dark: #506f68;
+  --ridge-grass: #b4bfa0;
+  --ridge-grass-light: #c4caaa;
+  --ridge-path: #e8d9b7;
+  --ridge-path-edge: #9fa58b;
+  --ridge-pine: #416c60;
+  --ridge-pine-light: #628578;
+  --ridge-trunk: #766d59;
+  --ridge-blossom: #dba99d;
+  --ridge-blossom-light: #efc5b6;
+  --ridge-deck: #c8a880;
+  --ridge-shadow: #36554f;
+  --ridge-wall: #e7d8b8;
+  --ridge-wall-shade: #b4af8e;
+  --ridge-timber: #be9570;
+  --ridge-timber-shade: #997c5e;
+  --ridge-timber-dark: #574e3e;
+  --ridge-roof: #52796e;
+  --ridge-roof-light: #6a8c7c;
+  --ridge-window: #edc47f;
+  --ridge-water: #b1d2c5;
+  --ridge-water-deep: #759f97;
+  --ridge-foreground: #36594f;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--ridge-sky-top);
+  > svg { width: 100%; height: 100%; max-width: none; }
+}
+.cornerPines { position: absolute; inset: 0; pointer-events: none; }
+.readingMist { position: absolute; inset: 0; background: linear-gradient(90deg, var(--valley-bg), color-mix(in srgb, var(--valley-bg) 94%, transparent) 24%, color-mix(in srgb, var(--valley-bg) 88%, transparent) 52%, color-mix(in srgb, var(--valley-bg) 35%, transparent) 65%, transparent 82%); background-size: var(--mist-width, 100%) 100%; background-repeat: no-repeat; }
+.contactMist {
+  --contact-mist: #f4f1ea;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--contact-mist) 97%, transparent) 0%,
+    color-mix(in srgb, var(--contact-mist) 93%, transparent) 18%,
+    color-mix(in srgb, var(--contact-mist) 82%, transparent) 34%,
+    color-mix(in srgb, var(--contact-mist) 63%, transparent) 48%,
+    color-mix(in srgb, var(--contact-mist) 38%, transparent) 62%,
+    color-mix(in srgb, var(--contact-mist) 14%, transparent) 77%,
+    transparent 94%);
+}
+:global([data-theme='dark']) .contactMist { --contact-mist: #12181b; }
+.mountainCabin { --ridge-roof: #586f66; --ridge-roof-light: #81917d; }
+:global([data-theme='dark']) .mountainCabin { --ridge-roof: #344f4b; --ridge-roof-light: #53695d; }
+.streamCurrent { animation: streamFlow 9s linear infinite; }
+.signal { opacity: .3; transition: opacity .4s; }
+.broadcast[data-active='true'] .signal { opacity: .85; }
+.signalWave {
+  transform-origin: 0 0;
+  opacity: .5;
+  animation: broadcastSignal 3.6s ease-out infinite;
+  &:nth-child(2) { animation-delay: -1.8s; transform: scale(1.75); opacity: .35; }
+}
+.waypointBoard { fill: var(--ridge-deck); transition: fill .3s; }
+.waypointHalo { opacity: 0; transition: opacity .3s; }
+.waypoint[data-active='true'] { .waypointBoard { fill: var(--ridge-window); } .waypointHalo { opacity: .65; } }
+.fieldScreen { fill: var(--ridge-roof); transition: fill .3s; }
+.stationLantern { fill: var(--ridge-deck); transition: fill .3s; }
+.stationGlow { opacity: 0; transition: opacity .3s; }
+.fieldStation[data-active='true'] { .stationGlow { opacity: 1; } .stationLantern { fill: var(--ridge-window); } .fieldScreen { fill: var(--ridge-water-deep); } }
+@keyframes streamFlow { to { stroke-dashoffset: -146; } }
+@keyframes broadcastSignal { 0% { transform: scale(.65); opacity: 0; } 20% { opacity: .65; } 100% { transform: scale(2.5); opacity: 0; } }
+.stratus { animation: drift 42s ease-in-out infinite alternate; }
+.stratusSlow { animation: drift 63s ease-in-out infinite alternate-reverse; }
+.mugSteam { animation: steamRise 4s ease-in-out infinite; }
+.lanternPool { opacity: 0; transition: opacity .5s; }
+.sunRays { opacity: 1; }
+@keyframes steamRise { 0%, 100% { opacity: .35; transform: translateY(0); } 50% { opacity: .7; transform: translate(2px, -5px); } }
+
+.clouds { animation: drift 48s ease-in-out infinite alternate; }
+.cloudWisps { animation: cloudDissolve 31s ease-in-out infinite; }
+.rayVeil { animation: rayDissolve 23s ease-in-out infinite; }
+@keyframes cloudDissolve { 0%, 100% { opacity: .65; transform: translateX(-5px); } 40% { opacity: 1; transform: translateX(5px); } 75% { opacity: .45; transform: translateX(12px); } }
+@keyframes rayDissolve { 0%, 100% { opacity: .65; } 40% { opacity: 1; } 75% { opacity: .35; } }
+.smoke { opacity: .4; animation: smoke 6s ease-in-out infinite; }
+.petals { animation: petals 9s ease-in-out infinite; }
+.fireflies { opacity: 0; }
+:global([data-theme='dark']) .landscape {
+  --haven-grass: #647e61;
+  --haven-edge: #49694f;
+  --haven-leaf: #365f49;
+  --haven-stem: #325343;
+  --ridge-sky-top: #1d303b;
+  --ridge-sky-bottom: #7a777f;
+  --ridge-sun: #f3ddbf;
+  --ridge-ray: #dce4e8;
+  --ridge-cloud: #899299;
+  --ridge-far: #526e7a;
+  --ridge-middle: #3d5c69;
+  --ridge-near: #2d4e57;
+  --ridge-snow: #9ba7a9;
+  --ridge-mist: #758f8c;
+  --ridge-haze: #748c91;
+  --ridge-mat: #c3b292;
+  --ridge-mat-stripe: #9c706b;
+  --ridge-mat-thread: #768b79;
+  --ridge-rock: #3f605b;
+  --ridge-rock-dark: #253f44;
+  --ridge-grass: #617565;
+  --ridge-grass-light: #718373;
+  --ridge-path: #a6a08c;
+  --ridge-path-edge: #556b60;
+  --ridge-pine: #294f49;
+  --ridge-pine-light: #43655a;
+  --ridge-trunk: #4e514b;
+  --ridge-blossom: #9d818b;
+  --ridge-blossom-light: #b199a0;
+  --ridge-deck: #8e806b;
+  --ridge-shadow: #182e33;
+  --ridge-wall: #a3a08d;
+  --ridge-wall-shade: #747e70;
+  --ridge-timber: #967f65;
+  --ridge-timber-shade: #6c6656;
+  --ridge-timber-dark: #353d38;
+  --ridge-roof: #35544e;
+  --ridge-roof-light: #4b6b5c;
+  --ridge-window: #ffd795;
+  --ridge-water: #759b9d;
+  --ridge-water-deep: #385963;
+  --ridge-foreground: #203b3c;
+  .lanternPool { opacity: 1; }
+  .sunRays { opacity: .2; }
+  .fireflies { opacity: .9; animation: fireflies 5s ease-in-out infinite alternate; filter: drop-shadow(0 0 5px #ffd795); }
+}
+
+.meadowGlow { opacity: .2; transition: opacity .6s; }
+.meadowFireflies { opacity: 0; transition: opacity .6s; }
+.meadowFirefly { animation: meadowDrift 6s ease-in-out infinite alternate; }
+.meadowSway { transform-origin: 0 0; animation: meadowSway 4s ease-in-out infinite; }
+.meadowHalo { transform-box: fill-box; transform-origin: center; animation: meadowHalo 4.5s ease-in-out infinite; }
+.petalDrift { opacity: 0; animation: petalDrift 7s linear infinite; }
+.petalWobble { transform-box: fill-box; transform-origin: center; animation: petalWobble 2.4s ease-in-out infinite; }
+@keyframes meadowSway { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(3deg); } }
+@keyframes meadowHalo { 0%, 100% { transform: scale(1); opacity: .7; } 50% { transform: scale(1.08); opacity: .9; } }
+@keyframes petalDrift {
+  0% { transform: translate(0, 0) rotate(0); opacity: 0; }
+  20% { opacity: .8; }
+  50% { transform: translate(-60px, 40px) rotate(180deg); }
+  80% { opacity: .8; }
+  100% { transform: translate(-120px, 80px) rotate(360deg); opacity: 0; }
+}
+@keyframes petalWobble { 0%, 100% { transform: translateX(-3px) scaleY(.7); } 50% { transform: translateX(3px) scaleY(1); } }
+:global([data-theme='dark']) .landscape {
+  .meadowGlow { opacity: 1; }
+  .meadowFireflies { opacity: 1; }
+}
+@keyframes meadowDrift { from { transform: translate(-3px, 2px); opacity: .35; } to { transform: translate(4px, -6px); opacity: 1; } }
+.landscape[data-motion='off'] {
+  .meadowFirefly, .meadowSway, .meadowHalo, .petalDrift, .petalWobble { animation: none; }
+  .airbornePetals { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .meadowFirefly, .meadowSway, .meadowHalo, .petalDrift, .petalWobble { animation: none !important; }
+  .airbornePetals { display: none; }
+}
+@keyframes drift { to { transform: translateX(28px); } }
+@keyframes smoke { 0%, 100% { transform: translateY(0); opacity: .2; } 50% { transform: translate(4px, -12px); opacity: .45; } }
+@keyframes petals { 0% { transform: translate(0, -12px); opacity: 0; } 20% { opacity: .8; } 80% { opacity: .6; } 100% { transform: translate(-45px, 65px); opacity: 0; } }
+@keyframes fireflies { to { opacity: .25; transform: translate(5px, -7px); } }
+.landscape[data-motion='off'] { .clouds, .smoke, .petals, .fireflies, .stratus, .stratusSlow, .mugSteam, .cloudWisps, .rayVeil, .streamCurrent, .signalWave { animation: none; } .petals { display: none; } }
+@media (max-width: 900px) {
+  .landscape > svg:first-child { transform: translateY(24px); }
+  .cornerPines { display: none; }
+  .readingMist { background: linear-gradient(180deg, var(--valley-bg) 0%, color-mix(in srgb, var(--valley-bg) 90%, transparent) 25%, transparent 63%); background-size: 100% 100%; }
+  .contactMist { background: linear-gradient(180deg, var(--contact-mist), color-mix(in srgb, var(--contact-mist) 85%, transparent) 25%, color-mix(in srgb, var(--contact-mist) 35%, transparent) 48%, transparent 73%); }
+}
+@media (prefers-reduced-motion: reduce) { .clouds, .smoke, .petals, .fireflies, .stratus, .stratusSlow, .mugSteam, .cloudWisps, .rayVeil, .streamCurrent, .signalWave { animation: none !important; } }
+// On short phones, keep the character below the protected hero copy.
+@media (max-width: 480px) and (max-height: 780px) {
+  .landscape > svg:first-child { transform: translateY(70px); }
+}
+
+// Structures remain opaque; camera movement carries them between reading stops.
+.lowerCurrent { animation-duration: 20s; }
+.librarySignal { opacity: .12; transition: opacity .4s; }
+.libraryPulse { transform-origin: 0 0; }
+.openObservatory[data-radio='true'] {
+  .librarySignal { opacity: .8; }
+  .libraryPulse { animation: libraryBroadcast 4s ease-out infinite; &:nth-child(2) { animation-delay: -1.3s; } &:nth-child(3) { animation-delay: -2.6s; } }
+}
+.archiveDoor { fill: var(--ridge-roof); transition: fill .4s; }
+.archiveGlow { opacity: .15; transition: opacity .4s; }
+.openObservatory[data-archive='true'] { .archiveDoor { fill: var(--ridge-window); } .archiveGlow { opacity: 1; } }
+.shopGlow { opacity: .25; transition: opacity .4s; }
+.shopActivity { opacity: .9; transition: opacity .4s; }
+.tradeOutpost[data-active='true'] { .shopGlow { opacity: 1; } .shopActivity { opacity: 1; } }
+@keyframes libraryBroadcast { 0% { transform: scale(.65); opacity: .75; } 100% { transform: scale(1.8); opacity: 0; } }
+.landscape[data-motion='off'] .libraryPulse { animation: none; }
+@media (prefers-reduced-motion: reduce) {
+  .libraryPulse { animation: none !important; }
+}

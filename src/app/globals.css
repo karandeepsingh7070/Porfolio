@@ -1,10 +1,16 @@
 /* ---------------------------------------------------------
    Design tokens
-   Off-white / near-black monochrome base, one coral accent.
+   Still's Garden of Echoes by day, Rainwood Canopy at dusk.
    Dual light/dark, toggled via [data-theme] on <html>.
 --------------------------------------------------------- */
 :root {
-  --bg: #fafafa;
+  --valley-bg: #edeae2;
+  --valley-ink: #304b40;
+  --valley-muted: #606c5d;
+  --valley-accent: #22756a;
+  --valley-line: #d3d5bd;
+  --valley-tint: #e5e6d3;
+  --bg: var(--valley-bg);
   --bg-raised: #ffffff;
   --bg-inverse: #111111;
   --ink: #111111;
@@ -60,7 +66,13 @@
 }
 
 :root[data-theme="dark"] {
-  --bg: #0b0b0c;
+  --valley-bg: #1d303b;
+  --valley-ink: #f0eee4;
+  --valley-muted: #bccacb;
+  --valley-accent: #d6b66b;
+  --valley-line: #4e656c;
+  --valley-tint: #2b444e;
+  --bg: var(--valley-bg);
   --bg-raised: #151517;
   --bg-inverse: #fafafa;
   --ink: #f5f5f3;
@@ -83,7 +95,7 @@
 
 body {
   background: var(--bg);
-  color: var(--ink);
+  color: var(--valley-ink);
   font-family: var(--font-body);
   font-size: var(--fs-body);
   line-height: 1.6;
@@ -92,6 +104,9 @@ body {
   text-rendering: optimizeLegibility;
   transition: background var(--dur-base) var(--ease-standard), color var(--dur-base) var(--ease-standard);
 }
+
+html { scroll-behavior: smooth; }
+html[data-valley-motion="off"] { scroll-behavior: auto; }
 
 
 h1,
