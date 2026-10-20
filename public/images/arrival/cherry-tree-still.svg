@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="460" viewBox="0 0 420 460">
+  <!-- Adapted from Still's flowerTree: one scalloped silhouette, a quiet
+       highlight and four blossom marks, without foliage or bark texture. -->
+  <path d="M197 451c8-59 10-105 9-153l-1-108 16-1 1 107c0 60 1 107 10 155z" fill="#9d826b"/>
+  <path d="M210 448c5-71 4-123 3-194l8-26 1 68c0 60 1 107 10 155z" fill="#87745f"/>
+  <path d="M212 323l-69-121M215 282l75-108" fill="none" stroke="#9d826b" stroke-width="12" stroke-linecap="round"/>
+  <g transform="translate(210 180) scale(350)">
+    <path d="M-.34 .11C-.52 .04-.47-.2-.29-.2C-.34-.4-.07-.45 .04-.31C.2-.43 .4-.29 .35-.15C.53-.09 .46 .15 .31 .18C.16 .31 .03 .21-.03 .23C-.19 .3-.35 .24-.34 .11Z" fill="#dda0a4"/>
+    <path d="M-.36-.13C-.41-.28-.25-.29-.22-.21C-.24-.4-.05-.39 .01-.24C.12-.33 .32-.27 .27-.15C.15-.07 .06-.14-.01-.1C-.14-.02-.26-.04-.36-.13Z" fill="#efb8b7"/>
+    <g fill="#f7d3c7">
+      <ellipse cx="-.28" cy=".02" rx=".018" ry=".03"/><ellipse cx="-.28" cy=".02" rx=".032" ry=".014"/>
+      <ellipse cx=".16" cy="-.16" rx=".018" ry=".03"/><ellipse cx=".16" cy="-.16" rx=".032" ry=".014"/>
+      <ellipse cx=".24" cy=".1" rx=".018" ry=".03"/><ellipse cx=".24" cy=".1" rx=".032" ry=".014"/>
+      <ellipse cx="-.07" cy=".1" rx=".018" ry=".03"/><ellipse cx="-.07" cy=".1" rx=".032" ry=".014"/>
+    </g>
+  </g>
+</svg>

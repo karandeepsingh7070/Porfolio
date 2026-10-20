@@ -71,7 +71,7 @@ export const caseStudies: CaseStudy[] = [
       "Every AI app I've used has the same problem - you either paste your whole context back in every prompt, or you pay a vendor to remember it for you.",
     thinking: 'So I built something in between. I wanted it to run entirely on my own machine, no API keys.',
     solution:
-      'LLM Recall a self-hosted memory engine that extracts atomic facts from raw text and embeds them locally. It ships a REST API, an MCP server for Claude Desktop and Cursor, and a live playground for testing it.',
+      'LLM Recall is a self-hosted memory engine that extracts atomic facts from raw text and embeds them locally. It ships a REST API, an MCP server for Claude Desktop and Cursor, and a live playground for testing it.',
     result: 'Fully open source, runs offline once the models are cached, with hybrid vector and keyword search over everything it remembers.',
     tech: ['TypeScript', 'Node.js', 'PostgreSQL', 'pgvector', 'Hono', 'transformers.js', 'MCP'],
     links: [{ label: 'GitHub', href: 'https://github.com/karandeepsingh7070/LLM-Recall-API' }],
@@ -88,20 +88,6 @@ export interface IndexProject {
 }
 
 export const indexProjects: IndexProject[] = [
-  {
-    name: 'Monumental Sports Network',
-    description: 'A sports streaming platform with live video, subscriptions, and paid content, built with a team of five I led.',
-    viewlift: true,
-    tech: ['React', 'TypeScript', 'GraphQL', 'SSR', 'Stripe'],
-    links: [{ label: 'Visit site', href: 'https://www.monumentalsportsnetwork.com/' }],
-  },
-  {
-    name: 'My Outdoor TV',
-    description: 'A streaming platform for outdoor sports fans, with live data and analytics wired in.',
-    viewlift: true,
-    tech: ['React', 'Video.js', 'WebSocket', 'SSE', 'Adobe Analytics'],
-    links: [{ label: 'Visit site', href: 'https://app.myoutdoortv.com/' }],
-  },
   {
     name: 'Overwatch Docs',
     description: 'The docs site for Overwatch TS, built on Nextra.',
