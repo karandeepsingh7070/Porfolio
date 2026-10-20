@@ -124,9 +124,6 @@ export function TradeOutpost() {
     {/* Small tufts overlap the footing to seat it into the hillside. */}
     <path d="M-76 2l-7-9l5 2l1-7l4 10l7-3l-5 10ZM19 23l-5-8l6 3l3-6l1 9l8-4l-5 9ZM92-7l-4-7l5 3l4-7l-1 10l6-2l-6 7Z" fill="var(--ridge-pine-light)" />
     </g>
-    <Waypoint x={-134} y={49} number="03" active={active === 10} />
-    <g transform="translate(-134 14) matrix(1 .25 0 1 0 0)" fill="var(--ridge-deck)" stroke="var(--ridge-timber-dark)" strokeWidth="1.5">
-      <path d="M-23 0H20L26 7L20 14H-23Z" /><path d="M23 20H-18L-25 27L-18 34H23Z" />
-    </g>
+
   </g>
 }

@@ -89,20 +89,6 @@ export interface IndexProject {
 
 export const indexProjects: IndexProject[] = [
   {
-    name: 'Monumental Sports Network',
-    description: 'A sports streaming platform with live video, subscriptions, and paid content, built with a team of five I led.',
-    viewlift: true,
-    tech: ['React', 'TypeScript', 'GraphQL', 'SSR', 'Stripe'],
-    links: [{ label: 'Visit site', href: 'https://www.monumentalsportsnetwork.com/' }],
-  },
-  {
-    name: 'My Outdoor TV',
-    description: 'A streaming platform for outdoor sports fans, with live data and analytics wired in.',
-    viewlift: true,
-    tech: ['React', 'Video.js', 'WebSocket', 'SSE', 'Adobe Analytics'],
-    links: [{ label: 'Visit site', href: 'https://app.myoutdoortv.com/' }],
-  },
-  {
     name: 'Overwatch Docs',
     description: 'The docs site for Overwatch TS, built on Nextra.',
     thumbnail: overwatchDocs,

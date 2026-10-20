@@ -67,6 +67,17 @@
 .mountainCabin { --ridge-roof: #586f66; --ridge-roof-light: #81917d; }
 :global([data-theme='dark']) .mountainCabin { --ridge-roof: #344f4b; --ridge-roof-light: #53695d; }
 .streamCurrent { animation: streamFlow 9s linear infinite; }
+.bridgeWalker { transition: transform 900ms cubic-bezier(.45, 0, .25, 1); }
+.bridgeStep { animation: bridgeStep 900ms ease-in-out; }
+@keyframes bridgeStep { 0%, 50%, 100% { transform: translateY(0); } 25%, 75% { transform: translateY(-2px); } }
+.landscape[data-motion='off'] {
+  .bridgeStep { animation: none; }
+  .bridgeWalker { transition: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bridgeStep { animation: none !important; }
+  .bridgeWalker { transition: none !important; }
+}
 .signal { opacity: .3; transition: opacity .4s; }
 .broadcast[data-active='true'] .signal { opacity: .85; }
 .signalWave {
@@ -212,4 +223,65 @@
 .landscape[data-motion='off'] .libraryPulse { animation: none; }
 @media (prefers-reduced-motion: reduce) {
   .libraryPulse { animation: none !important; }
+}
+
+// Continuous color blending follows chapter progress in both scroll directions.
+:global([data-journey-lighting]) .landscape {
+  --haven-grass: color-mix(in srgb, color-mix(in srgb, #9eb987, #9eb987 var(--journey-evening, 0%)), #647e61 var(--journey-night, 0%));
+  --haven-edge: color-mix(in srgb, color-mix(in srgb, #7e9f77, #7e9f77 var(--journey-evening, 0%)), #49694f var(--journey-night, 0%));
+  --haven-leaf: color-mix(in srgb, color-mix(in srgb, #4f7955, #4f7955 var(--journey-evening, 0%)), #365f49 var(--journey-night, 0%));
+  --haven-stem: color-mix(in srgb, color-mix(in srgb, #426847, #426847 var(--journey-evening, 0%)), #325343 var(--journey-night, 0%));
+  --ridge-sky-top: color-mix(in srgb, color-mix(in srgb, #edeae2, #d6b7ad var(--journey-evening, 0%)), #1d303b var(--journey-night, 0%));
+  --ridge-sky-bottom: color-mix(in srgb, color-mix(in srgb, #f6e2c8, #f3bc85 var(--journey-evening, 0%)), #7a777f var(--journey-night, 0%));
+  --ridge-sun: color-mix(in srgb, color-mix(in srgb, #ffe9b7, #ffc47a var(--journey-evening, 0%)), #f3ddbf var(--journey-night, 0%));
+  --ridge-ray: color-mix(in srgb, color-mix(in srgb, #fff3b0, #ffce8c var(--journey-evening, 0%)), #dce4e8 var(--journey-night, 0%));
+  --ridge-cloud: color-mix(in srgb, color-mix(in srgb, #fff9ed, #efc9b3 var(--journey-evening, 0%)), #899299 var(--journey-night, 0%));
+  --ridge-far: color-mix(in srgb, color-mix(in srgb, #b6c7c5, #a699a2 var(--journey-evening, 0%)), #526e7a var(--journey-night, 0%));
+  --ridge-middle: color-mix(in srgb, color-mix(in srgb, #8fadaa, #8a9090 var(--journey-evening, 0%)), #3d5c69 var(--journey-night, 0%));
+  --ridge-near: color-mix(in srgb, color-mix(in srgb, #72958c, #737d76 var(--journey-evening, 0%)), #2d4e57 var(--journey-night, 0%));
+  --ridge-snow: color-mix(in srgb, color-mix(in srgb, #e7ebe1, #e1cbbb var(--journey-evening, 0%)), #9ba7a9 var(--journey-night, 0%));
+  --ridge-mist: color-mix(in srgb, color-mix(in srgb, #d8e3d6, #c9b7a3 var(--journey-evening, 0%)), #758f8c var(--journey-night, 0%));
+  --ridge-haze: color-mix(in srgb, color-mix(in srgb, #d5ded4, #c5aaa0 var(--journey-evening, 0%)), #748c91 var(--journey-night, 0%));
+  --ridge-mat: color-mix(in srgb, color-mix(in srgb, #e9d9b9, #e9d9b9 var(--journey-evening, 0%)), #c3b292 var(--journey-night, 0%));
+  --ridge-mat-stripe: color-mix(in srgb, color-mix(in srgb, #ac7768, #ac7768 var(--journey-evening, 0%)), #9c706b var(--journey-night, 0%));
+  --ridge-mat-thread: color-mix(in srgb, color-mix(in srgb, #8b9c81, #8b9c81 var(--journey-evening, 0%)), #768b79 var(--journey-night, 0%));
+  --ridge-rock: color-mix(in srgb, color-mix(in srgb, #85988b, #85988b var(--journey-evening, 0%)), #3f605b var(--journey-night, 0%));
+  --ridge-rock-dark: color-mix(in srgb, color-mix(in srgb, #506f68, #506f68 var(--journey-evening, 0%)), #253f44 var(--journey-night, 0%));
+  --ridge-grass: color-mix(in srgb, color-mix(in srgb, #b4bfa0, #a6a079 var(--journey-evening, 0%)), #617565 var(--journey-night, 0%));
+  --ridge-grass-light: color-mix(in srgb, color-mix(in srgb, #c4caaa, #c2b18a var(--journey-evening, 0%)), #718373 var(--journey-night, 0%));
+  --ridge-path: color-mix(in srgb, color-mix(in srgb, #e8d9b7, #e5c59b var(--journey-evening, 0%)), #a6a08c var(--journey-night, 0%));
+  --ridge-path-edge: color-mix(in srgb, color-mix(in srgb, #9fa58b, #9c957b var(--journey-evening, 0%)), #556b60 var(--journey-night, 0%));
+  --ridge-pine: color-mix(in srgb, color-mix(in srgb, #416c60, #4d685b var(--journey-evening, 0%)), #294f49 var(--journey-night, 0%));
+  --ridge-pine-light: color-mix(in srgb, color-mix(in srgb, #628578, #71826b var(--journey-evening, 0%)), #43655a var(--journey-night, 0%));
+  --ridge-trunk: color-mix(in srgb, color-mix(in srgb, #766d59, #766d59 var(--journey-evening, 0%)), #4e514b var(--journey-night, 0%));
+  --ridge-blossom: color-mix(in srgb, color-mix(in srgb, #dba99d, #dba99d var(--journey-evening, 0%)), #9d818b var(--journey-night, 0%));
+  --ridge-blossom-light: color-mix(in srgb, color-mix(in srgb, #efc5b6, #efc5b6 var(--journey-evening, 0%)), #b199a0 var(--journey-night, 0%));
+  --ridge-deck: color-mix(in srgb, color-mix(in srgb, #c8a880, #c8a880 var(--journey-evening, 0%)), #8e806b var(--journey-night, 0%));
+  --ridge-shadow: color-mix(in srgb, color-mix(in srgb, #36554f, #36554f var(--journey-evening, 0%)), #182e33 var(--journey-night, 0%));
+  --ridge-wall: color-mix(in srgb, color-mix(in srgb, #e7d8b8, #e6c7a0 var(--journey-evening, 0%)), #a3a08d var(--journey-night, 0%));
+  --ridge-wall-shade: color-mix(in srgb, color-mix(in srgb, #b4af8e, #b09b7c var(--journey-evening, 0%)), #747e70 var(--journey-night, 0%));
+  --ridge-timber: color-mix(in srgb, color-mix(in srgb, #be9570, #c09065 var(--journey-evening, 0%)), #967f65 var(--journey-night, 0%));
+  --ridge-timber-shade: color-mix(in srgb, color-mix(in srgb, #997c5e, #987153 var(--journey-evening, 0%)), #6c6656 var(--journey-night, 0%));
+  --ridge-timber-dark: color-mix(in srgb, color-mix(in srgb, #574e3e, #574e3e var(--journey-evening, 0%)), #353d38 var(--journey-night, 0%));
+  --ridge-roof: color-mix(in srgb, color-mix(in srgb, #52796e, #617363 var(--journey-evening, 0%)), #35544e var(--journey-night, 0%));
+  --ridge-roof-light: color-mix(in srgb, color-mix(in srgb, #6a8c7c, #82907b var(--journey-evening, 0%)), #4b6b5c var(--journey-night, 0%));
+  --ridge-window: color-mix(in srgb, color-mix(in srgb, #edc47f, #ffd494 var(--journey-evening, 0%)), #ffd795 var(--journey-night, 0%));
+  --ridge-water: color-mix(in srgb, color-mix(in srgb, #b1d2c5, #a9b8b0 var(--journey-evening, 0%)), #759b9d var(--journey-night, 0%));
+  --ridge-water-deep: color-mix(in srgb, color-mix(in srgb, #759f97, #788e8d var(--journey-evening, 0%)), #385963 var(--journey-night, 0%));
+  --ridge-foreground: color-mix(in srgb, color-mix(in srgb, #36594f, #36594f var(--journey-evening, 0%)), #203b3c var(--journey-night, 0%));
+  .sunRays { opacity: calc(1 - var(--journey-night-strength, 0) * .8); }
+  .daySun { opacity: calc(1 - var(--journey-night-strength, 0)); }
+  .nightMoon, .nightStars { opacity: var(--journey-night-strength, 0); }
+  .lanternPool, .meadowGlow { opacity: calc(.2 + var(--journey-night-strength, 0) * .8); }
+  .meadowFireflies { opacity: var(--journey-night-strength, 0); }
+}
+.daySun { opacity: 1; }
+.nightMoon, .nightStars { opacity: 0; }
+
+:global([data-journey-lighting]) .contactMist {
+  --contact-mist: color-mix(in srgb, #f4f1ea, #12181b var(--journey-night, 0%));
+}
+:global([data-journey-lighting]) .mountainCabin {
+  --ridge-roof: color-mix(in srgb, #586f66, #344f4b var(--journey-night, 0%));
+  --ridge-roof-light: color-mix(in srgb, #81917d, #53695d var(--journey-night, 0%));
 }

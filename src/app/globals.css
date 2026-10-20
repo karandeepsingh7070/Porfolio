@@ -1,7 +1,7 @@
 /* ---------------------------------------------------------
    Design tokens
    Still's Garden of Echoes by day, Rainwood Canopy at dusk.
-   Dual light/dark, toggled via [data-theme] on <html>.
+   Scroll-driven daylight, evening and night via [data-theme] on <html>.
 --------------------------------------------------------- */
 :root {
   --valley-bg: #edeae2;
@@ -65,6 +65,16 @@
   color-scheme: light;
 }
 
+:root[data-theme="evening"] {
+  --valley-bg: #e9d3bc;
+  --valley-ink: #493c36;
+  --valley-muted: #6b5146;
+  --valley-accent: #8a4936;
+  --valley-line: #c7ad91;
+  --valley-tint: #dfc5a9;
+  color-scheme: light;
+}
+
 :root[data-theme="dark"] {
   --valley-bg: #1d303b;
   --valley-ink: #f0eee4;
@@ -85,6 +95,33 @@
   --border-strong: rgba(245, 245, 243, 0.24);
   --shadow-color: 0, 0, 0;
   color-scheme: dark;
+}
+
+/* One interpolated palette drives scenery, reading mist and interface surfaces.
+   Foreground colors change independently to stay readable during twilight. */
+@property --journey-evening { syntax: '<percentage>'; inherits: true; initial-value: 0%; }
+@property --journey-night { syntax: '<percentage>'; inherits: true; initial-value: 0%; }
+@property --journey-night-strength { syntax: '<number>'; inherits: true; initial-value: 0; }
+:root[data-journey-lighting] {
+  --valley-bg: color-mix(in srgb, color-mix(in srgb, #edeae2, #e9d3bc var(--journey-evening)), #1d303b var(--journey-night));
+  --valley-line: color-mix(in srgb, color-mix(in srgb, #d3d5bd, #c7ad91 var(--journey-evening)), #4e656c var(--journey-night));
+  --valley-tint: color-mix(in srgb, color-mix(in srgb, #e5e6d3, #dfc5a9 var(--journey-evening)), #2b444e var(--journey-night));
+  --valley-ink: color-mix(in srgb, #304b40, #493c36 var(--journey-evening));
+  --valley-muted: color-mix(in srgb, #606c5d, #6b5146 var(--journey-evening));
+  --valley-accent: color-mix(in srgb, #22756a, #8a4936 var(--journey-evening));
+  --journey-card: color-mix(in srgb, rgb(255 255 255 / .6), rgb(30 48 58 / .65) var(--journey-night));
+  --journey-card-active: color-mix(in srgb, rgb(255 255 255 / .78), rgb(35 54 63 / .84) var(--journey-night));
+}
+:root[data-journey-lighting][data-theme="dark"] {
+  --valley-ink: #fffdf7;
+  --valley-muted: #f0f1eb;
+  --valley-accent: #f9dfab;
+}
+:root[data-journey-lighting][data-valley-motion="on"] {
+  transition: --journey-evening .6s linear, --journey-night .6s linear, --journey-night-strength .6s linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root[data-journey-lighting] { transition: none; }
 }
 
 * {

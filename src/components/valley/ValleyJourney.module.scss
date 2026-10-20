@@ -30,7 +30,7 @@
   }
 }
 .headerActions { display: flex; align-items: center; gap: 24px; }
-.theme { display: flex; align-items: center; gap: 8px; padding: 8px 0; font-size: 11px; color: var(--valley-muted); transition: color .2s; &:hover { color: var(--valley-accent); } }
+.theme { display: flex; align-items: center; gap: 8px; padding: 8px 0; font-size: 11px; color: var(--valley-muted); transition: color .2s; }
 .resume { display: inline-flex; align-items: center; gap: 12px; font-size: 12px; border: 1px solid var(--valley-line); padding: 10px 17px; border-radius: 3px; white-space: nowrap; transition: background .2s, border-color .2s; &:hover { background: var(--valley-tint); border-color: var(--valley-muted); } }
 .menuButton { display: none; padding: 8px; }
 .mobileNav { display: none; }
@@ -82,3 +82,7 @@
   .motion { font-size: 9px; min-width: 77px; padding-left: 8px; }
 }
 @media (max-width: 380px) { .brandName { display: none; } .journeyBar { padding-inline: 16px; } }
+
+:global([data-journey-lighting]) .journey[data-scene-step='7'] .worldCaption {
+  background: color-mix(in srgb, rgb(255 255 255 / .6), rgb(15 23 42 / .6) var(--journey-night));
+}

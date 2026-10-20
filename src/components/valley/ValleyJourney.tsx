@@ -2,13 +2,15 @@
 
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { useScroll } from 'framer-motion'
-import { ArrowDownIcon, ArrowUpRightIcon, ListIcon, MoonIcon, PauseIcon, PlayIcon, SunIcon, XIcon } from '@phosphor-icons/react/dist/ssr'
+import { ArrowDownIcon, ArrowUpRightIcon, ListIcon, MoonIcon, PauseIcon, PlayIcon, SunHorizonIcon, SunIcon, XIcon } from '@phosphor-icons/react/dist/ssr'
 import { resumeHref } from '@/data/social'
 import RidgeLandscape from './RidgeLandscape'
 import Soundtrack from './Soundtrack'
+import { ExperienceProvider } from './ExperienceContext'
 import { WorkshopProvider } from './WorkshopContext'
 import { scrollToScene } from './journey-math'
 import { ridgeCamera } from './ridge-camera'
+import { journeyLighting, type JourneyTime } from './journey-lighting'
 import styles from './ValleyJourney.module.scss'
 
 
@@ -30,7 +32,7 @@ export default function ValleyJourney({ children }: { children: ReactNode }) {
   const progressLine = useRef<HTMLSpanElement>(null)
   const altitude = useRef<HTMLSpanElement>(null)
   const [active, setActive] = useState(0)
-  const [dark, setDark] = useState(false)
+  const [time, setTime] = useState<JourneyTime>('daylight')
   const [compact, setCompact] = useState(false)
   const [hydrated, setHydrated] = useState(false)
   const [reduced, setReduced] = useState(false)
@@ -45,18 +47,14 @@ export default function ValleyJourney({ children }: { children: ReactNode }) {
     const sizeQuery = window.matchMedia('(max-width: 900px)')
     const syncMotion = () => setReduced(motionQuery.matches)
     const syncSize = () => setCompact(sizeQuery.matches)
-    const syncTheme = () => setDark(document.documentElement.dataset.theme === 'dark')
-    syncMotion(); syncSize(); syncTheme()
+    syncMotion(); syncSize()
     try { setPaused(localStorage.getItem('valley-motion') === 'off') } catch { /* Storage is optional. */ }
     setHydrated(true)
     motionQuery.addEventListener('change', syncMotion)
     sizeQuery.addEventListener('change', syncSize)
-    const themeObserver = new MutationObserver(syncTheme)
-    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
     return () => {
       motionQuery.removeEventListener('change', syncMotion)
       sizeQuery.removeEventListener('change', syncSize)
-      themeObserver.disconnect()
     }
   }, [])
 
@@ -71,11 +69,21 @@ export default function ValleyJourney({ children }: { children: ReactNode }) {
     const sections = Array.from(main.querySelectorAll<HTMLElement>('[data-scene-step]'))
     let bounds: number[] = []
     let measuring = 0
+    const root = document.documentElement
+    const previousTheme = root.dataset.theme
+    root.dataset.journeyLighting = 'auto'
+
 
     const update = (y: number) => {
       if (!bounds.length) return
       const total = document.documentElement.scrollHeight - window.innerHeight
       progress.current = scrollToScene(y, bounds, window.innerHeight, total)
+      const lighting = journeyLighting(progress.current)
+      root.style.setProperty('--journey-evening', `${(lighting.evening * 100).toFixed(2)}%`)
+      root.style.setProperty('--journey-night', `${(lighting.night * 100).toFixed(2)}%`)
+      root.style.setProperty('--journey-night-strength', lighting.night.toFixed(4))
+      if (root.dataset.theme !== lighting.theme) root.dataset.theme = lighting.theme
+      setTime(previous => previous === lighting.time ? previous : lighting.time)
       const nextActive = Math.min(stepChapter.length - 1, Math.round(progress.current))
       if (activeRef.current !== nextActive) { activeRef.current = nextActive; setActive(nextActive) }
       if (progressLine.current) progressLine.current.style.transform = `scaleX(${Math.max(0, Math.min(1, y / Math.max(1, total)))})`
@@ -100,6 +108,10 @@ export default function ValleyJourney({ children }: { children: ReactNode }) {
     document.fonts.ready.then(() => { if (!cancelled) measure() })
     return () => {
       cancelled = true
+      delete root.dataset.journeyLighting
+      if (previousTheme) root.dataset.theme = previousTheme
+      else delete root.dataset.theme
+      for (const name of ['--journey-evening', '--journey-night', '--journey-night-strength']) root.style.removeProperty(name)
       unsubscribe(); observer.disconnect(); cancelAnimationFrame(measuring)
       window.removeEventListener('resize', measure)
       window.removeEventListener('pageshow', measure)
@@ -126,12 +138,6 @@ export default function ValleyJourney({ children }: { children: ReactNode }) {
     }
   }, [menuOpen])
 
-  const toggleTheme = () => {
-    const next = !dark
-    document.documentElement.dataset.theme = next ? 'dark' : 'light'
-    setDark(next)
-    try { localStorage.setItem('theme', next ? 'dark' : 'light') } catch { /* The toggle works without persistence. */ }
-  }
   const toggleMotion = () => {
     const next = !paused
     setPaused(next)
@@ -139,7 +145,7 @@ export default function ValleyJourney({ children }: { children: ReactNode }) {
   }
 
   return (
-    <WorkshopProvider><div className={styles.journey} data-scene-step={active}>
+    <WorkshopProvider><ExperienceProvider><div className={styles.journey} data-scene-step={active}>
       <a className={styles.skip} href="#main">Skip to content</a>
       <header className={styles.header} ref={headerRef}>
         <a href="#arrival" className={styles.brand} aria-label="Karandeep Singh, back to top" onClick={() => setMenuOpen(false)}>
@@ -152,9 +158,9 @@ export default function ValleyJourney({ children }: { children: ReactNode }) {
           ))}
         </nav>
         <div className={styles.headerActions}>
-          <button className={styles.theme} type="button" onClick={toggleTheme} aria-label={dark ? 'Switch to daylight' : 'Switch to nightfall'}>
-            {dark ? <MoonIcon size={18} /> : <SunIcon size={18} />}<span>{dark ? 'Nightfall' : 'Daylight'}</span>
-          </button>
+          <span className={styles.theme} aria-label={`Time of day: ${time}. Lighting follows your scroll.`} title="Lighting follows your journey">
+            {time === 'night' ? <MoonIcon size={18} /> : time === 'evening' ? <SunHorizonIcon size={18} /> : <SunIcon size={18} />}<span>{time === 'night' ? 'Nightfall' : time === 'evening' ? 'Evening' : 'Daylight'}</span>
+          </span>
           <a className={styles.resume} href={resumeHref} target="_blank" rel="noopener noreferrer">Resume <ArrowUpRightIcon size={15} /></a>
           <button className={styles.menuButton} type="button" aria-expanded={menuOpen} aria-controls="valley-menu" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <XIcon size={23} /> : <ListIcon size={23} />}
@@ -196,6 +202,6 @@ export default function ValleyJourney({ children }: { children: ReactNode }) {
         </div>
         <span className={styles.progressTrack} aria-hidden="true"><span ref={progressLine} /></span>
       </div>
-    </div></WorkshopProvider>
+    </div></ExperienceProvider></WorkshopProvider>
   )
 }

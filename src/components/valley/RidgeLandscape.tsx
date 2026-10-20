@@ -6,6 +6,8 @@ import { OpenObservatory, TradeOutpost } from './ProjectLandmarks'
 import TimberWorkshop, { WorkshopRiver } from './TimberWorkshop'
 import styles from './RidgeLandscape.module.scss'
 import FloralHaven from './FloralHaven'
+import StoneBridge from './StoneBridge'
+import { bridgeEntrance, bridgeExit } from './bridge-layout'
 
 function Pine({ x, y, scale = 1 }: { x: number; y: number; scale?: number }) {
   return <g transform={`translate(${x} ${y}) scale(${scale})`}>
@@ -59,8 +61,9 @@ export default function RidgeLandscape({ progress, motion, compact }: { progress
       readingMist.current?.style.setProperty('opacity', `${(1 - workshopBlend * .45) * (1 - contactBlend)}`)
       readingMist.current?.style.setProperty('--mist-width', `${100 - workshopBlend * 26}%`)
       contactMist.current?.style.setProperty('opacity', `${contactBlend}`)
+      const experienceFraming = Math.max(0, 1 - Math.abs(position - 5))
       const workFraming = Math.max(0, Math.min(1, position, 5 - position))
-      illustration.current?.setAttribute('viewBox', compact ? `${490 + workFraming * 240 + contactBlend * 215} 0 950 900` : '0 0 1440 900')
+      illustration.current?.setAttribute('viewBox', compact ? `${490 + workFraming * 240 + experienceFraming * 175 + contactBlend * 215} 0 950 900` : '0 0 1440 900')
     }
     update()
     window.addEventListener('valley-progress', update)
@@ -90,7 +93,14 @@ export default function RidgeLandscape({ progress, motion, compact }: { progress
       <path fill="url(#ridge-sky)" d="M0 0H1440V900H0Z" />
       <g ref={sky}>
         <circle cx="1090" cy="210" r="215" fill="url(#ridge-sun)" />
-        <circle cx="1090" cy="210" r="42" fill="var(--ridge-sun)" />
+        <circle className={styles.daySun} cx="1090" cy="210" r="42" fill="var(--ridge-sun)" />
+        <g className={styles.nightMoon}>
+          <circle cx="1090" cy="210" r="33" fill="#f3e6c8" />
+          <g fill="#c9c7b9" opacity=".35"><circle cx="1078" cy="200" r="7" /><circle cx="1101" cy="220" r="5" /><circle cx="1095" cy="190" r="3" /></g>
+        </g>
+        <g className={styles.nightStars} fill="#f4edda">
+          {[[805, 96], [944, 70], [1180, 65], [1320, 180], [1000, 150], [720, 230], [1200, 270]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r={i % 2 ? 1.4 : 2} opacity={i % 2 ? .5 : .8} />)}
+        </g>
         <g className={styles.clouds}>
           <Cloud x={711} y={179} scale={.85} />
           <Cloud x={1245} y={129} scale={1.05} delay="-11s" />
@@ -129,8 +139,8 @@ export default function RidgeLandscape({ progress, motion, compact }: { progress
         <path d="M1440 491C1287 482 1312 557 1196 582L999 608L884 650L842 686L925 741C1103 783 1166 912 1095 1020C986 1184 911 1202 943 1321C987 1487 1218 1539 1194 1980C1174 2161 901 2223 921 2378C938 2540 1220 2590 1188 2772C1160 2930 1030 3015 907 3147Q600 3350 0 3450V3760H1440Z" fill="var(--ridge-grass)" />
         {/* Facets give the grounded cliff depth, without separate island bases. */}
         <path d="M878 632L820 689L908 766L1005 858L955 722ZM1095 1020L1068 987L933 1181L943 1321L1010 1160ZM1194 1980L1161 1960L876 2310L921 2378L996 2256" fill="var(--ridge-rock-dark)" opacity=".5" />
-        <path d="M1440 604Q1314 586 1220 644T1073 661Q949 652 957 692C965 726 1131 753 1188 823S1196 978 1098 1090S1002 1236 1046 1321S1254 1467 1287 1576S1238 2063 1110 2145S974 2289 1012 2388S1292 2577 1283 2691C1278 2848 1110 2964 1108 3077Q1109 3115 1150 3132" fill="none" stroke="var(--ridge-path-edge)" strokeWidth="34" strokeLinecap="round" mask="url(#ridge-trail-edge-mask)" />
-        <path d="M1440 604Q1314 586 1220 644T1073 661Q949 652 957 692C965 726 1131 753 1188 823S1196 978 1098 1090S1002 1236 1046 1321S1254 1467 1287 1576S1238 2063 1110 2145S974 2289 1012 2388S1292 2577 1283 2691C1278 2848 1110 2964 1108 3077Q1109 3115 1150 3132" fill="none" stroke="var(--ridge-path)" strokeWidth="25" strokeLinecap="round" mask="url(#ridge-trail-mask)" />
+        <path d={`M1440 604Q1314 586 1220 644T1073 661Q949 652 957 692C965 726 1131 753 1188 823S1196 978 1098 1090S1002 1236 1046 1321S1254 1467 1287 1576S1295 2020 1307 2100Q1295 2135 ${bridgeEntrance.join(" ")}M${bridgeExit.join(" ")}Q1020 2290 1012 2388S1292 2577 1283 2691C1278 2848 1110 2964 1108 3077Q1109 3115 1150 3132`} fill="none" stroke="var(--ridge-path-edge)" strokeWidth="34" strokeLinecap="round" mask="url(#ridge-trail-edge-mask)" />
+        <path d={`M1440 604Q1314 586 1220 644T1073 661Q949 652 957 692C965 726 1131 753 1188 823S1196 978 1098 1090S1002 1236 1046 1321S1254 1467 1287 1576S1295 2020 1307 2100Q1295 2135 ${bridgeEntrance.join(" ")}M${bridgeExit.join(" ")}Q1020 2290 1012 2388S1292 2577 1283 2691C1278 2848 1110 2964 1108 3077Q1109 3115 1150 3132`} fill="none" stroke="var(--ridge-path)" strokeWidth="25" strokeLinecap="round" mask="url(#ridge-trail-mask)" />
         {/* A woven mat lies directly on the grass, just above the trail. */}
         <g>
           <path d="M972 625L1103 595L1183 633L1042 669Z" fill="var(--ridge-shadow)" opacity=".15" />
@@ -173,12 +183,8 @@ export default function RidgeLandscape({ progress, motion, compact }: { progress
         <OpenObservatory />
         <Pine x={1338} y={1244} scale={1.4} /><Pine x={1385} y={1287} scale={.8} />
         <TradeOutpost />
-        {/* Gorge and its stone bridge. */}
-        <path d="M1440 2125C1359 2101 1316 2137 1273 2168S1113 2236 996 2250L885 2295L911 2355C1054 2288 1197 2292 1305 2224S1390 2183 1440 2201Z" fill="var(--ridge-rock-dark)" />
-        <path d="M1091 2115L1172 2145V2280L1150 2289V2233C1150 2209 1121 2199 1121 2225V2301L1091 2310Z" fill="var(--ridge-wall-shade)" />
-        <path d="M1081 2113L1098 2103L1183 2136L1172 2154Z" fill="var(--ridge-path)" />
-        <path d="M1086 2103L1177 2137M1086 2093L1177 2127" fill="none" stroke="var(--ridge-wall)" strokeWidth="6" />
-        <Pine x={1301} y={2411} scale={1.7} /><Pine x={1400} y={2454} scale={1.1} /><Pine x={1244} y={2431} scale={.8} />
+        <StoneBridge />
+        <Pine x={1200} y={2495} scale={1.05} /><Pine x={1260} y={2528} scale={.65} />
         <FloralHaven />
 
       </g>

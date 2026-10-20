@@ -2,17 +2,19 @@ import { Fragment } from 'react'
 import Image from 'next/image'
 import { ArrowDownIcon, ArrowUpRightIcon, PlusIcon } from '@phosphor-icons/react/dist/ssr'
 import { caseStudies, indexProjects, type CaseStudy } from '@/data/projects'
-import { experience, writing } from '@/data/experience'
+import { writing } from '@/data/experience'
 import { capabilities } from '@/data/capabilities'
 import { clientGroups } from '@/data/clients'
 import { email, resumeHref, socialLinks } from '@/data/social'
 import { soundtrack } from '@/data/soundtrack'
 import CopyAddress from './CopyAddress'
-import { ProjectLandmark, WorkshopCard } from './WorkshopContext'
+import ExperienceTimeline from './ExperienceTimeline'
+import { ProjectLandmark } from './WorkshopContext'
 import styles from './PortfolioContent.module.scss'
 
 const pixabayTracks = soundtrack.filter(track => track.credit)
 const ownTracks = soundtrack.filter(track => !track.credit)
+const toolProjects = indexProjects.filter(project => !project.viewlift)
 
 function Links({ links }: { links: { label: string; href: string }[] }) {
   return <div className={styles.links}>{links.map(link => (
@@ -65,21 +67,14 @@ export default function PortfolioContent() {
         <p className={styles.eyebrow}>02. THE WORKSHOPS — SELECTED WORK</p>
         <h2>Built for the<br />real world<span className={styles.titleDot}>.</span></h2>
         <p className={styles.description}>Streaming platforms, live experiences, and the systems that keep them running.</p>
-        <p className={styles.trailNote}>Two projects. Two stops along the stream.</p>
         </div>
-        {indexProjects.slice(0, 2).map((project, index) => <WorkshopCard key={project.name} index={index}>
-          <div className={styles.productionHeader}><span className={styles.projectIndex}>{String(index + 1).padStart(2, '0')}</span><div><p className={styles.projectMeta}>Viewlift / {index === 0 ? 'Team lead' : 'Frontend engineering'}</p><h3 id={`workshop-project-${index}`}>{project.name}</h3></div></div>
-          <p>{project.description}</p>
-          <p className={styles.impact}><span aria-hidden="true" />{index === 0 ? 'Live streaming · Led a team of 5' : 'Live data · Real-time analytics'}</p>
-          <ul className={styles.techBadges} aria-label="Technology stack">{project.tech.map(tech => <li key={tech}>{tech}</li>)}</ul>
-          <div className={styles.projectFooter}><Links links={project.links} /><span className={styles.landmarkLabel}>{index === 0 ? '01 / Broadcast workshop' : '02 / Outdoor station'}</span></div>
-        </WorkshopCard>)}
-        <div className={styles.clientGroups}>{clientGroups.map(group => <div key={group.title}>
-          <p>{group.title}</p>
-          <div className={styles.clients}>{group.clients.map(client => <div key={client.name}>
-            {client.logo ? <Image src={client.logo} alt={client.name} sizes="80px" /> : client.logoSrc ? <Image src={client.logoSrc} width={85} height={34} alt={client.name} /> : <span>{client.name}</span>}
-          </div>)}</div>
-        </div>)}</div>
+        <div className={styles.clientGroups}>{clientGroups.map(group => <section className={styles.clientGroup} key={group.title} data-featured={group.featured || undefined} aria-label={group.title}>
+          {!group.featured && <h3>{group.title}</h3>}
+          <ul className={styles.clients}>{group.clients.map(client => <li className={styles.clientCard} key={client.name}>
+            <div className={styles.clientLogo}>{client.logo ? <Image src={client.logo} alt="" sizes="120px" /> : client.logoSrc ? <Image src={client.logoSrc} width={120} height={64} alt="" /> : null}</div>
+            <span>{client.name}</span>
+          </li>)}</ul>
+        </section>)}</div>
       </div>
     </section>
 
@@ -90,8 +85,8 @@ export default function PortfolioContent() {
       <div className={styles.reading}>
         <ProjectLandmark index={3} label="LLM Recall API"><p className={styles.landmarkCaption}>02 / The memory archive</p><CaseStudyContent project={caseStudies[1]} /></ProjectLandmark>
         <details className={`${styles.details} ${styles.moreWork}`}>
-          <summary>More tools & experiments <span>{indexProjects.length - 2}<PlusIcon size={18} /></span></summary>
-          <div className={styles.projectList}>{indexProjects.slice(2).map((project, index) => <ProjectLandmark key={project.name} index={index + 4} label={project.name}>
+          <summary>More tools & experiments <span>{toolProjects.length}<PlusIcon size={18} /></span></summary>
+          <div className={styles.projectList}>{toolProjects.map((project, index) => <ProjectLandmark key={project.name} index={index + 4} label={project.name}>
             <h3>{project.name}</h3><p>{project.description}</p><ul className={styles.techBadges} aria-label="Technology stack">{project.tech.map(tech => <li key={tech}>{tech}</li>)}</ul><Links links={project.links} />
           </ProjectLandmark>)}</div>
         </details>
@@ -112,15 +107,12 @@ export default function PortfolioContent() {
       </div>
     </section>
 
-    <section id="experience" data-scene-step="5" className={styles.section}>
+    <section id="experience" data-scene-step="5" className={`${styles.section} ${styles.experienceSection}`}>
       <div className={styles.reading}>
         <p className={styles.eyebrow}>03. THE STONE BRIDGE — EXPERIENCE</p>
         <h2>Every layer<br />matters<span className={styles.titleDot}>.</span></h2>
         <p className={styles.description}>From my first frontend to leading a team. A steady climb in responsibility.</p>
-        <ol className={styles.experience}>{experience.map(entry => <li key={entry.period}>
-          <p className={styles.period}>{entry.period}</p><h3>{entry.title}</h3><p className={styles.organisation}>{entry.organisation}</p>
-          <ul>{entry.points.map(point => <li key={point}>{point}</li>)}</ul>
-        </li>)}</ol>
+        <ExperienceTimeline />
         <details className={styles.details}>
           <summary>The tools I build with <PlusIcon size={18} /></summary>
           <dl className={styles.capabilities}>{groups.map(group => <div key={group}><dt>{group}</dt><dd>{capabilities.filter(cap => cap.group === group).map(cap => cap.label).join(', ')}</dd></div>)}</dl>

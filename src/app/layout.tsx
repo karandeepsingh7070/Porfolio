@@ -96,16 +96,8 @@ export const metadata: Metadata = {
   },
 }
 
-const themeInitScript = `
-(function () {
-  try {
-    var stored = localStorage.getItem('theme');
-    document.documentElement.setAttribute('data-theme', stored === 'dark' ? 'dark' : 'light');
-  } catch (e) {
-    document.documentElement.setAttribute('data-theme', 'light');
-  }
-})();
-`
+// The journey begins in daylight; restored scroll positions are applied on mount.
+const themeInitScript = `document.documentElement.setAttribute('data-theme', 'light');`
 
 export default function RootLayout({
   children,
