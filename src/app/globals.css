@@ -117,9 +117,8 @@
   --valley-muted: #f0f1eb;
   --valley-accent: #f9dfab;
 }
-:root[data-journey-lighting][data-valley-motion="on"] {
-  transition: --journey-evening .6s linear, --journey-night .6s linear, --journey-night-strength .6s linear;
-}
+/* Scroll progress already interpolates the palette. Transitions on inherited
+   custom properties would recalculate every descendant for another 600ms. */
 @media (prefers-reduced-motion: reduce) {
   :root[data-journey-lighting] { transition: none; }
 }
@@ -141,6 +140,8 @@ body {
   text-rendering: optimizeLegibility;
   transition: background var(--dur-base) var(--ease-standard), color var(--dur-base) var(--ease-standard);
 }
+
+:root[data-journey-lighting] body { transition: none; }
 
 html { scroll-behavior: smooth; }
 html[data-valley-motion="off"] { scroll-behavior: auto; }

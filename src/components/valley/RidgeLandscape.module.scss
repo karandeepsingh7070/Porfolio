@@ -44,6 +44,7 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
+  contain: layout paint;
   background: var(--ridge-sky-top);
   > svg { width: 100%; height: 100%; max-width: none; }
 }
@@ -227,6 +228,8 @@
 
 // Continuous color blending follows chapter progress in both scroll directions.
 :global([data-journey-lighting]) .landscape {
+  .waypointBoard, .fieldScreen, .stationLantern, .archiveDoor,
+  .lanternPool, .meadowGlow, .meadowFireflies { transition: none; }
   --haven-grass: color-mix(in srgb, color-mix(in srgb, #9eb987, #9eb987 var(--journey-evening, 0%)), #647e61 var(--journey-night, 0%));
   --haven-edge: color-mix(in srgb, color-mix(in srgb, #7e9f77, #7e9f77 var(--journey-evening, 0%)), #49694f var(--journey-night, 0%));
   --haven-leaf: color-mix(in srgb, color-mix(in srgb, #4f7955, #4f7955 var(--journey-evening, 0%)), #365f49 var(--journey-night, 0%));
@@ -284,4 +287,26 @@
 :global([data-journey-lighting]) .mountainCabin {
   --ridge-roof: color-mix(in srgb, #586f66, #344f4b var(--journey-night, 0%));
   --ridge-roof-light: color-mix(in srgb, #81917d, #53695d var(--journey-night, 0%));
+}
+
+// Keep distant landmarks still. Their animations resume before they enter view.
+.landscape [data-ambient] * { animation-play-state: paused; }
+:global(html[data-valley-scene='0']) .landscape [data-ambient='arrival'] *,
+:global(html[data-valley-scene='1']) .landscape [data-ambient='arrival'] *,
+:global(html[data-valley-scene='0']) .landscape [data-ambient='workshop'] *,
+:global(html[data-valley-scene='1']) .landscape [data-ambient='workshop'] *,
+:global(html[data-valley-scene='2']) .landscape [data-ambient='workshop'] *,
+:global(html[data-valley-scene='1']) .landscape [data-ambient='observatory'] *,
+:global(html[data-valley-scene='2']) .landscape [data-ambient='observatory'] *,
+:global(html[data-valley-scene='3']) .landscape [data-ambient='observatory'] *,
+:global(html[data-valley-scene='3']) .landscape [data-ambient='outpost'] *,
+:global(html[data-valley-scene='4']) .landscape [data-ambient='outpost'] *,
+:global(html[data-valley-scene='5']) .landscape [data-ambient='outpost'] *,
+:global(html[data-valley-scene='5']) .landscape [data-ambient='haven'] *,
+:global(html[data-valley-scene='6']) .landscape [data-ambient='haven'] *,
+:global(html[data-valley-scene='7']) .landscape [data-ambient='haven'] * { animation-play-state: running; }
+
+@media (max-width: 900px), (hover: none) and (pointer: coarse) {
+  :global(html[data-valley-scrolling]) .landscape svg * { animation-play-state: paused !important; }
+  .fireflies { filter: none !important; }
 }

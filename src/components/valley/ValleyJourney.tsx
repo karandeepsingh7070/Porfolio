@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useRef, useState, type ReactNode } from 'react'
-import { useScroll } from 'framer-motion'
 import { ArrowDownIcon, ArrowUpRightIcon, ListIcon, MoonIcon, PauseIcon, PlayIcon, SunHorizonIcon, SunIcon, XIcon } from '@phosphor-icons/react/dist/ssr'
 import { resumeHref } from '@/data/social'
 import RidgeLandscape from './RidgeLandscape'
@@ -38,7 +37,6 @@ export default function ValleyJourney({ children }: { children: ReactNode }) {
   const [reduced, setReduced] = useState(false)
   const [paused, setPaused] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const { scrollY } = useScroll()
   const motionEnabled = hydrated && !reduced && !paused
   const chapter = stepChapter[active]
 
@@ -68,7 +66,16 @@ export default function ValleyJourney({ children }: { children: ReactNode }) {
     if (!main) return
     const sections = Array.from(main.querySelectorAll<HTMLElement>('[data-scene-step]'))
     let bounds: number[] = []
-    let measuring = 0
+    let frame = 0
+    let idle = 0
+    let needsMeasure = true
+    let viewportHeight = window.innerHeight
+    let total = 1
+    let lastTime: JourneyTime | undefined
+    let lastAltitude = -1
+    let lastScene = -1
+    let lastEvening = ''
+    let lastNight = ''
     const root = document.documentElement
     const previousTheme = root.dataset.theme
     root.dataset.journeyLighting = 'auto'
@@ -76,31 +83,63 @@ export default function ValleyJourney({ children }: { children: ReactNode }) {
 
     const update = (y: number) => {
       if (!bounds.length) return
-      const total = document.documentElement.scrollHeight - window.innerHeight
-      progress.current = scrollToScene(y, bounds, window.innerHeight, total)
+      progress.current = scrollToScene(y, bounds, viewportHeight, total)
       const lighting = journeyLighting(progress.current)
-      root.style.setProperty('--journey-evening', `${(lighting.evening * 100).toFixed(2)}%`)
-      root.style.setProperty('--journey-night', `${(lighting.night * 100).toFixed(2)}%`)
-      root.style.setProperty('--journey-night-strength', lighting.night.toFixed(4))
+      // Whole percentages are visually continuous without invalidating the entire
+      // inherited palette for imperceptible changes or during chapter rests.
+      const evening = `${Math.round(lighting.evening * 100)}%`
+      const night = `${Math.round(lighting.night * 100)}%`
+      if (evening !== lastEvening) {
+        root.style.setProperty('--journey-evening', evening)
+        lastEvening = evening
+      }
+      if (night !== lastNight) {
+        root.style.setProperty('--journey-night', night)
+        root.style.setProperty('--journey-night-strength', `${Math.round(lighting.night * 100) / 100}`)
+        lastNight = night
+      }
       if (root.dataset.theme !== lighting.theme) root.dataset.theme = lighting.theme
-      setTime(previous => previous === lighting.time ? previous : lighting.time)
+      if (lastTime !== lighting.time) { lastTime = lighting.time; setTime(lighting.time) }
       const nextActive = Math.min(stepChapter.length - 1, Math.round(progress.current))
       if (activeRef.current !== nextActive) { activeRef.current = nextActive; setActive(nextActive) }
       if (progressLine.current) progressLine.current.style.transform = `scaleX(${Math.max(0, Math.min(1, y / Math.max(1, total)))})`
-      if (altitude.current) altitude.current.textContent = `${ridgeCamera(progress.current, true).altitude}`
-      window.dispatchEvent(new Event('valley-progress'))
+      const nextAltitude = ridgeCamera(progress.current, true).altitude
+      if (altitude.current && nextAltitude !== lastAltitude) {
+        altitude.current.textContent = `${nextAltitude}`
+        lastAltitude = nextAltitude
+      }
+      // Animated SVG decoration yields to touch scrolling, and is only active
+      // near its reading stop rather than throughout the entire mountainside.
+      if (lastScene !== nextActive) { root.dataset.valleyScene = `${nextActive}`; lastScene = nextActive }
+      window.dispatchEvent(new CustomEvent('valley-progress', { detail: { y, height: viewportHeight } }))
+    }
+    const flush = () => {
+      frame = 0
+      // Read geometry together, before any lighting or landscape writes.
+      const y = window.scrollY
+      if (needsMeasure) {
+        viewportHeight = window.innerHeight
+        total = Math.max(1, root.scrollHeight - viewportHeight)
+        bounds = sections.map(section => section.getBoundingClientRect().top + y)
+        needsMeasure = false
+      }
+      update(y)
+    }
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(flush) }
+    const onScroll = () => {
+      if (!idle) root.dataset.valleyScrolling = 'true'
+      window.clearTimeout(idle)
+      idle = window.setTimeout(() => { idle = 0; delete root.dataset.valleyScrolling }, 150)
+      schedule()
     }
     const measure = () => {
-      cancelAnimationFrame(measuring)
-      measuring = requestAnimationFrame(() => {
-        bounds = sections.map(section => section.getBoundingClientRect().top + window.scrollY)
-        update(window.scrollY)
-      })
+      needsMeasure = true
+      schedule()
     }
     const observer = new ResizeObserver(measure)
     sections.forEach(section => observer.observe(section))
     measure()
-    const unsubscribe = scrollY.on('change', update)
+    window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', measure)
     window.addEventListener('pageshow', measure)
     main.addEventListener('load', measure, true)
@@ -109,15 +148,19 @@ export default function ValleyJourney({ children }: { children: ReactNode }) {
     return () => {
       cancelled = true
       delete root.dataset.journeyLighting
+      delete root.dataset.valleyScene
+      delete root.dataset.valleyScrolling
       if (previousTheme) root.dataset.theme = previousTheme
       else delete root.dataset.theme
       for (const name of ['--journey-evening', '--journey-night', '--journey-night-strength']) root.style.removeProperty(name)
-      unsubscribe(); observer.disconnect(); cancelAnimationFrame(measuring)
+      observer.disconnect(); cancelAnimationFrame(frame)
+      window.clearTimeout(idle)
+      window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', measure)
       window.removeEventListener('pageshow', measure)
       main.removeEventListener('load', measure, true)
     }
-  }, [scrollY])
+  }, [])
 
   useEffect(() => {
     if (!menuOpen) return

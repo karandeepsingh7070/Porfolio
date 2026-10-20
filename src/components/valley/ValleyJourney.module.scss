@@ -86,3 +86,13 @@
 :global([data-journey-lighting]) .journey[data-scene-step='7'] .worldCaption {
   background: color-mix(in srgb, rgb(255 255 255 / .6), rgb(15 23 42 / .6) var(--journey-night));
 }
+
+// Tinted surfaces keep their contrast without repeatedly sampling the moving SVG.
+@media (max-width: 900px), (hover: none) and (pointer: coarse) {
+  .header { background: color-mix(in srgb, var(--valley-bg) 94%, transparent); }
+  .journeyBar { background: var(--valley-bg); }
+  .header, .journeyBar, .worldCaption, .journey[data-scene-step='7'] .worldCaption {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}

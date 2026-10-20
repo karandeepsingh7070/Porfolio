@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, type CSSProperties, type MutableRefObject } from 'react'
+import { memo, useEffect, useRef, type CSSProperties, type MutableRefObject } from 'react'
 import { ridgeCamera } from './ridge-camera'
 import { OpenObservatory, TradeOutpost } from './ProjectLandmarks'
 import TimberWorkshop, { WorkshopRiver } from './TimberWorkshop'
@@ -30,7 +30,7 @@ function Cloud({ x, y, scale = 1, delay = '0s' }: { x: number; y: number; scale?
 }
 
 /** One continuous illustrated mountainside; scroll moves its layers at different depths. */
-export default function RidgeLandscape({ progress, motion, compact }: { progress: MutableRefObject<number>; motion: boolean; compact: boolean }) {
+function RidgeLandscape({ progress, motion, compact }: { progress: MutableRefObject<number>; motion: boolean; compact: boolean }) {
   const terrain = useRef<SVGGElement>(null)
   const mountains = useRef<SVGGElement>(null)
   const foreground = useRef<SVGGElement>(null)
@@ -40,30 +40,35 @@ export default function RidgeLandscape({ progress, motion, compact }: { progress
   const framing = useRef<SVGGElement>(null)
   const contactMist = useRef<HTMLDivElement>(null)
   const readingMist = useRef<HTMLDivElement>(null)
-  const illustration = useRef<SVGSVGElement>(null)
+  const pan = useRef<SVGGElement>(null)
   useEffect(() => {
+    let lastPosition = -1
     const update = () => {
-      const camera = ridgeCamera(progress.current, motion)
       const position = motion ? progress.current : Math.round(progress.current)
+      if (position === lastPosition) return
+      lastPosition = position
+      const camera = ridgeCamera(position, true)
       const contactBlend = Math.max(0, Math.min(1, position - 6))
       // On phones, the final clearing rests below the contact copy.
       terrain.current?.setAttribute('transform', `translate(0 ${camera.terrain + (compact ? contactBlend * 10 : 0)})`)
       mountains.current?.setAttribute('transform', `translate(0 ${camera.mountains})`)
       foreground.current?.setAttribute('transform', `translate(0 ${camera.foreground})`)
-      foreground.current?.setAttribute('opacity', `${Math.max(0, 1 - progress.current)}`)
+      foreground.current?.setAttribute('opacity', `${Math.max(0, 1 - position)}`)
       sky.current?.setAttribute('transform', `translate(0 ${camera.sky})`)
       rays.current?.setAttribute('transform', `translate(0 ${camera.sky})`)
       stratus.current?.setAttribute('transform', `translate(0 ${camera.terrain * .3})`)
       framing.current?.setAttribute('transform', `translate(0 ${camera.foreground})`)
-      framing.current?.setAttribute('opacity', `${.2 * Math.max(0, 1 - progress.current * 2)}`)
+      framing.current?.setAttribute('opacity', `${.2 * Math.max(0, 1 - position * 2)}`)
       // Reduce the reading veil by 45% around the workshops, preserving arrival's contrast.
-      const workshopBlend = Math.max(0, 1 - Math.abs((motion ? progress.current : Math.round(progress.current)) - 1))
+      const workshopBlend = Math.max(0, 1 - Math.abs(position - 1))
       readingMist.current?.style.setProperty('opacity', `${(1 - workshopBlend * .45) * (1 - contactBlend)}`)
-      readingMist.current?.style.setProperty('--mist-width', `${100 - workshopBlend * 26}%`)
+      if (!compact) readingMist.current?.style.setProperty('--mist-width', `${100 - workshopBlend * 26}%`)
       contactMist.current?.style.setProperty('opacity', `${contactBlend}`)
       const experienceFraming = Math.max(0, 1 - Math.abs(position - 5))
       const workFraming = Math.max(0, Math.min(1, position, 5 - position))
-      illustration.current?.setAttribute('viewBox', compact ? `${490 + workFraming * 240 + experienceFraming * 175 + contactBlend * 215} 0 950 900` : '0 0 1440 900')
+      // Pan within a fixed viewport. Rewriting viewBox on each scroll frame
+      // invalidates the geometry of every descendant in this large SVG.
+      pan.current?.setAttribute('transform', `translate(${compact ? -(workFraming * 240 + experienceFraming * 175 + contactBlend * 215) : 0} 0)`)
     }
     update()
     window.addEventListener('valley-progress', update)
@@ -71,7 +76,7 @@ export default function RidgeLandscape({ progress, motion, compact }: { progress
   }, [progress, motion, compact])
 
   return <div className={styles.landscape} data-motion={motion ? 'on' : 'off'}>
-    <svg ref={illustration} viewBox={compact ? '490 0 950 900' : '0 0 1440 900'} preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <svg viewBox={compact ? '490 0 950 900' : '0 0 1440 900'} preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <defs>
         <linearGradient id="ridge-sky" x2="0" y2="1"><stop stopColor="var(--ridge-sky-top)" /><stop offset="1" stopColor="var(--ridge-sky-bottom)" /></linearGradient>
         <linearGradient id="ridge-rock" x2=".8" y2="1"><stop stopColor="var(--ridge-rock)" /><stop offset="1" stopColor="var(--ridge-rock-dark)" /></linearGradient>
@@ -90,6 +95,7 @@ export default function RidgeLandscape({ progress, motion, compact }: { progress
         <pattern id="ridge-weave" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 2H10M2 0V10" stroke="var(--ridge-mat-thread)" strokeWidth=".5" opacity=".35" /></pattern>
         <g id="ridge-blossom"><path d="M-6 0C-30-7-16-23 0-9C13-27 30-12 13 1C31 11 15 26 2 12C-10 29-28 14-6 0" fill="var(--ridge-blossom-light)" /></g>
       </defs>
+      <g ref={pan}>
       <path fill="url(#ridge-sky)" d="M0 0H1440V900H0Z" />
       <g ref={sky}>
         <circle cx="1090" cy="210" r="215" fill="url(#ridge-sun)" />
@@ -142,6 +148,7 @@ export default function RidgeLandscape({ progress, motion, compact }: { progress
         <path d={`M1440 604Q1314 586 1220 644T1073 661Q949 652 957 692C965 726 1131 753 1188 823S1196 978 1098 1090S1002 1236 1046 1321S1254 1467 1287 1576S1295 2020 1307 2100Q1295 2135 ${bridgeEntrance.join(" ")}M${bridgeExit.join(" ")}Q1020 2290 1012 2388S1292 2577 1283 2691C1278 2848 1110 2964 1108 3077Q1109 3115 1150 3132`} fill="none" stroke="var(--ridge-path-edge)" strokeWidth="34" strokeLinecap="round" mask="url(#ridge-trail-edge-mask)" />
         <path d={`M1440 604Q1314 586 1220 644T1073 661Q949 652 957 692C965 726 1131 753 1188 823S1196 978 1098 1090S1002 1236 1046 1321S1254 1467 1287 1576S1295 2020 1307 2100Q1295 2135 ${bridgeEntrance.join(" ")}M${bridgeExit.join(" ")}Q1020 2290 1012 2388S1292 2577 1283 2691C1278 2848 1110 2964 1108 3077Q1109 3115 1150 3132`} fill="none" stroke="var(--ridge-path)" strokeWidth="25" strokeLinecap="round" mask="url(#ridge-trail-mask)" />
         {/* A woven mat lies directly on the grass, just above the trail. */}
+        <g data-ambient="arrival">
         <g>
           <path d="M972 625L1103 595L1183 633L1042 669Z" fill="var(--ridge-shadow)" opacity=".15" />
           <g transform="matrix(1 -.23 .95 .44 975 616)">
@@ -177,20 +184,26 @@ export default function RidgeLandscape({ progress, motion, compact }: { progress
         <g className={styles.petals} fill="var(--ridge-blossom)"><ellipse cx="1145" cy="487" rx="4" ry="2" transform="rotate(25 1145 487)" /><ellipse cx="1285" cy="521" rx="3" ry="5" /><ellipse cx="1108" cy="551" rx="4" ry="2" /></g>
         <g className={styles.fireflies} fill="var(--ridge-window)">{[[1120,570],[1260,550],[975,602],[1300,476],[1158,525]].map(([x,y],i) => <circle key={i} cx={x} cy={y} r="2.5" />)}</g>
         <Pine x={1382} y={585} scale={1.55} /><Pine x={1343} y={626} scale={.8} />
+        </g>
+        <g data-ambient="workshop">
         <WorkshopRiver />
         <Pine x={1400} y={879} scale={1.2} /><Pine x={1324} y={834} scale={.8} />
         <TimberWorkshop /><Pine x={1480} y={1095} scale={1.45} />
+        </g>
+        <g data-ambient="observatory">
         <OpenObservatory />
+        </g>
         <Pine x={1338} y={1244} scale={1.4} /><Pine x={1385} y={1287} scale={.8} />
-        <TradeOutpost />
+        <g data-ambient="outpost"><TradeOutpost /></g>
         <StoneBridge />
         <Pine x={1200} y={2495} scale={1.05} /><Pine x={1260} y={2528} scale={.65} />
-        <FloralHaven />
+        <g data-ambient="haven"><FloralHaven /></g>
 
       </g>
       <g ref={foreground}>
         <path d="M0 812Q124 717 229 805T433 900H0Z" fill="var(--ridge-foreground)" />
         <g style={{'--ridge-pine':'var(--ridge-foreground)', '--ridge-pine-light':'var(--ridge-foreground)'} as CSSProperties}><Pine x={-10} y={900} scale={1.8} /><g opacity=".48"><Pine x={128} y={848} scale={.85} /><Pine x={204} y={889} scale={1.1} /></g><Pine x={1437} y={955} scale={2.1} /></g>
+      </g>
       </g>
     </svg>
     <div ref={readingMist} className={styles.readingMist} />
@@ -200,3 +213,5 @@ export default function RidgeLandscape({ progress, motion, compact }: { progress
     </svg>
   </div>
 }
+
+export default memo(RidgeLandscape)

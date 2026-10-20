@@ -1,6 +1,7 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
+import { observeReadingPosition } from './reading-position'
 import styles from './PortfolioContent.module.scss'
 
 type WorkshopSelection = {
@@ -17,36 +18,26 @@ export function WorkshopProvider({ children }: { children: ReactNode }) {
   const [focused, focus] = useState<number | null>(null)
 
   useEffect(() => {
-    const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-workshop-project]'))
     let lastScroll = window.scrollY
-    const update = () => {
-      if (lastScroll !== window.scrollY) {
+    return observeReadingPosition('[data-workshop-project]', (cards, y, height) => {
+      if (lastScroll !== y) {
         hover(null)
         const focusedCard = document.activeElement?.closest<HTMLElement>('[data-workshop-project]')
-        const rect = focusedCard?.getBoundingClientRect()
-        if (!rect || rect.bottom <= 0 || rect.top >= window.innerHeight) focus(null)
-        lastScroll = window.scrollY
+        const target = cards.find(card => card.element === focusedCard)
+        if (!target || target.bottom <= y || target.top >= y + height) focus(null)
+        lastScroll = y
       }
-      const visible = cards.filter(card => !card.closest('details:not([open])') && card.getClientRects().length > 0)
-      const distances = visible.map(card => {
-        const rect = card.getBoundingClientRect()
-        const readingLine = window.innerHeight * .5
-        return Math.max(rect.top - readingLine, readingLine - rect.bottom, 0)
+      const readingLine = y + height * .5
+      const distances = cards.map(card => {
+        return Math.max(card.top - readingLine, readingLine - card.bottom, 0)
       })
-      if (distances.length) setScrolled(Number(visible[distances.indexOf(Math.min(...distances))].dataset.workshopProject))
-    }
-    update()
-    window.addEventListener('valley-progress', update)
-    window.addEventListener('resize', update)
-    document.addEventListener('toggle', update, true)
-    return () => {
-      window.removeEventListener('valley-progress', update)
-      window.removeEventListener('resize', update)
-      document.removeEventListener('toggle', update, true)
-    }
+      if (distances.length) setScrolled(Number(cards[distances.indexOf(Math.min(...distances))].element.dataset.workshopProject))
+    })
   }, [])
 
-  return <WorkshopContext.Provider value={{ active: focused ?? hovered ?? scrolled, hover, focus }}>{children}</WorkshopContext.Provider>
+  const active = focused ?? hovered ?? scrolled
+  const value = useMemo(() => ({ active, hover, focus }), [active])
+  return <WorkshopContext.Provider value={value}>{children}</WorkshopContext.Provider>
 }
 
 /** The article preserves ordinary project links; its selection also lights the landscape. */

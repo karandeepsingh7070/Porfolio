@@ -214,6 +214,9 @@
 
 // Theme labels no longer switch the visible surfaces at a single scroll threshold.
 :global([data-journey-lighting]) {
+  // Scroll already blends these surfaces; trailing color transitions add paint
+  // work and briefly leave light cards behind their night-time text.
+  .careerCard, .careerNode, .production { transition: box-shadow .3s; }
   .hero .reading { --hero-surface: var(--valley-bg); --hero-ink: var(--valley-ink); --hero-copy: var(--valley-ink); }
   .careerCard { background: var(--journey-card); border-color: color-mix(in srgb, var(--valley-ink) 10%, transparent); box-shadow: 0 5px 18px rgb(20 35 30 / .1); }
   .careerTimeline > li[data-active='true'] .careerCard { background: var(--journey-card-active); border-color: color-mix(in srgb, var(--valley-accent) 35%, transparent); }
@@ -255,4 +258,15 @@
   .production .projectFooter { gap: 8px; .landmarkLabel { font-size: 8px; } }
   .clients { gap: 8px; }
   .clientCard { padding-inline: 8px; > span { font-size: 10px; } }
+}
+
+@media (max-width: 900px), (hover: none) and (pointer: coarse) {
+  .section:not(.hero) .reading, .careerCard, .clientCard, .production {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  :global([data-journey-lighting]) {
+    .careerCard { background: color-mix(in srgb, #fff, #1e303a var(--journey-night)); }
+    .careerTimeline > li[data-active='true'] .careerCard { background: color-mix(in srgb, #fff, #23363f var(--journey-night)); }
+  }
 }
